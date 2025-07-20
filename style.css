@@ -2,7 +2,7 @@
 body {
     background-color: #1a1a1a;
     color: #F5F5F5;
-    font-family: 'Roboto', sans-serif;
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     margin: 0;
     line-height: 1.7;
     font-size: 16px;
@@ -19,7 +19,7 @@ body {
 }
 
 h1, h2, h3 {
-    font-family: 'Raleway', sans-serif;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-weight: 700;
     color: #FFDAB9;
     margin-bottom: 20px;
@@ -72,7 +72,7 @@ header .container {
 .logo a {
     font-family: 'Great Vibes', cursive;
     color: #FFDAB9;
-    font-size: 32px;
+    font-size: 30px;
     font-weight: 400;
     transition: text-shadow 0.3s ease;
 }
@@ -80,7 +80,7 @@ header .container {
 .logo a i {
     margin-right: 12px;
     font-size: 0.7em;
-    color: #E57373;
+    color: #FFDAB9;
     transition: transform 0.3s ease, color 0.3s ease;
 }
 
@@ -105,7 +105,7 @@ nav ul li {
 }
 
 nav a {
-    font-family: 'Raleway', sans-serif;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 16px;
     font-weight: 400;
     color: #FFDAB9;
@@ -148,34 +148,27 @@ main section {
     position: relative;
 }
 
-/* --- About Section (MODIFIED) --- */
+/* --- About Section --- */
 #about {
-    /* MODIFIED: Reduced gradient alpha to make background image more visible */
     background: linear-gradient(rgba(26, 26, 26, 0.7), rgba(26, 26, 26, 0.7)), url('studio.jpg') no-repeat center center;
     background-size: cover;
     background-attachment: fixed;
-    padding: 100px 0;
+    padding: 30px 0;
 }
 
 .profile-card {
     display: flex;
     align-items: center;
     gap: 40px;
-    max-width: 950px; 
+    max-width: 1100px; 
     margin: 0 auto;
-    background-color: rgba(255, 218, 185, 0.9);
-    border: 1px solid #d3b89c;
-    border-radius: 12px;
-    /* MODIFIED: Increased vertical padding to make the box taller */
-    padding: 25px 40px;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
     text-align: left;
 }
+
 .profile-image {
-    width: 250px;
-    height: 250px;
+    width: 400px;
+    height: 400px;
     border-radius: 50%;
-    /* MODIFIED: Changed border and outline to darker shades */
     border: 4px solid #fff;
     outline: 2px solid #E57373;
     overflow: hidden;
@@ -191,39 +184,38 @@ main section {
 
 .profile-info {
     flex-grow: 1;
+    background-color: rgba(0, 0, 0, 0.8); 
+    padding: 30px; 
+    border-radius: 8px; 
 }
 
 .profile-card h1 {
-    /* MODIFIED: Changed text color to a dark shade */
-    color: #443a30;
+    color: #FFDAB9;
     font-size: 2.8em;
     margin-bottom: 0;
 }
 
 .profile-card h2 {
-    /* MODIFIED: Changed text color to a dark shade */
     font-size: 1.3em;
     font-weight: 400;
-    color: #645140;
+    color: #F5F5F5;
     margin: 0 0 25px 0;
     text-align: left;
 }
 
 .profile-card p {
-    font-size: 1.1em;
+    font-size: 1.2em; 
     line-height: 1.8;
-    /* MODIFIED: Changed text color to a dark shade */
-    color: #3d3d3d;
+    color: #F5F5F5;
     margin-bottom: 40px;
 }
 
 .profile-highlights {
     display: grid;
-    /* UPDATED: Changed from 1fr to repeat(3, 1fr) to create three columns */
     grid-template-columns: repeat(3, 1fr); 
     gap: 20px;
     text-align: left;
-    border-top: 1px solid rgba(100, 81, 64, 0.3);
+    border-top: 1px solid rgba(255, 218, 185, 0.3);
     padding-top: 30px;
 }
 
@@ -235,7 +227,6 @@ main section {
 
 .highlight-item i {
     font-size: 1.6em;
-    /* MODIFIED: Changed icon color */
     color: #E57373;
     margin-top: 0;
 }
@@ -243,14 +234,12 @@ main section {
 .highlight-text h3 {
     font-size: 1.2em;
     margin: 0 0 5px 0;
-    /* MODIFIED: Changed text color */
-    color: #443a30;
+    color: #FFDAB9;
 }
 
 .highlight-text span {
     font-size: 1em;
-    /* MODIFIED: Changed text color */
-    color: #645140;
+    color: #F5F5F5;
     line-height: 1.5;
 }
 
@@ -274,7 +263,6 @@ main section {
     }
     
     .profile-highlights {
-        /* This will stack the highlights on smaller screens for better readability */
         grid-template-columns: 1fr;
         text-align: left;
     }
@@ -286,16 +274,29 @@ main section {
 }
 
 
-/* --- Tutor Videos Section --- */
-#tutor-videos {
-    background-color: #1a1a1a;
+/* --- Gallery Section --- */
+/* MODIFIED: Changed background-color to a background image */
+#gallery {
+    background: linear-gradient(rgba(26, 26, 26, 0.85), rgba(26, 26, 26, 0.85)), url('graphic.jpg') no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.gallery-subtitle {
+    text-align: center;
+    font-size: 1.8em;
+    margin-bottom: 30px;
+    margin-top: 0;
+}
+
+.gallery-subtitle + .videos-grid + .gallery-subtitle {
+    margin-top: 60px;
 }
 
 .videos-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     gap: 40px;
-    margin-top: 40px;
 }
 
 .video-container {
@@ -414,77 +415,52 @@ main section {
     transform: translateY(-3px);
 }
 
-/* --- Contact Section (Updated) --- */
+/* --- Contact Section (Updated for Maximum Compactness) --- */
 #contact {
-    background: #1a1a1a;
-    text-align: left;
+    background-color: #FFDAB9;
+    text-align: center;
+    padding: 30px 0; 
 }
 
-.contact-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: center;
-    margin-top: 40px;
+#contact h2 {
+    color: #443a30;
+    margin-bottom: 15px;
 }
 
-#contact p {
-    max-width: 100%;
-    margin: 0;
+#contact .contact-intro p {
+    max-width: 600px;
+    color: #645140;
+    margin: 0 auto 20px auto;
     font-size: 1.1em;
     line-height: 1.8;
 }
 
 .contact-details {
     display: flex;
-    flex-direction: column;
-    gap: 25px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
 }
 
 .contact-item {
     display: flex;
     align-items: center;
-    background-color: #252525;
-    padding: 20px;
-    border-radius: 8px;
-    border: 1px solid #333;
-    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
-}
-
-.contact-item:hover {
-    background-color: #333;
-    border-color: #E57373;
-    transform: translateY(-5px);
+    gap: 10px;
 }
 
 .contact-item i {
     color: #E57373;
-    font-size: 1.8em;
-    margin-right: 20px;
-    width: 40px;
-    text-align: center;
-}
-
-.contact-item div {
-    display: flex;
-    flex-direction: column;
-}
-
-.contact-item strong {
-    color: #FFDAB9;
-    font-weight: 700;
-    font-size: 0.9em;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 5px;
+    font-size: 1.5em;
 }
 
 .contact-item a, .contact-item span {
     font-size: 1.1em;
     font-weight: 400;
-    color: #F5F5F5;
+    color: #443a30;
+    transition: color 0.3s ease;
 }
 
 .contact-item a:hover {
-    color: #FFDAB9;
+    color: #E57373;
 }
