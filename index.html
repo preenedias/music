@@ -22,9 +22,12 @@
   <header>
     <div class="container">
       <div class="logo">
-        <a href="#"><i class="fas fa-music"></i> Preene Dias Vocals</a>
+        <a href="#"><i class="fas fa-music"></i> Preene Dias</a>
       </div>
-      
+      <!-- ✅ ADDED: Hamburger menu button for mobile -->
+      <button class="nav-toggle" aria-label="toggle navigation">
+        <span class="hamburger"></span>
+      </button>
       <nav>
         <ul>
           <li><a href="#about">About</a></li>
@@ -32,6 +35,8 @@
           <li><a href="#class-features">Classes</a></li>
           <li><a href="#testimonials">Testimonials</a></li>
           <li><a href="#contact">Contact</a></li>
+          <!-- ✅ ADDED: Register Now button in the navigation -->
+          <li><a href="https://forms.gle/yQ8vHAuSLSgFw6n37" target="_blank" class="nav-cta">Register Now</a></li>
         </ul>
       </nav>
     </div>
@@ -183,5 +188,28 @@
       <p>© 2025 Preene Dias Vocal Studio. All Rights Reserved.</p>
     </div>
   </footer>
+
+  <!-- ✅ ADDED: JavaScript for mobile navigation -->
+  <script>
+    const navToggle = document.querySelector('.nav-toggle');
+    const nav = document.querySelector('nav');
+    const body = document.querySelector('body');
+
+    navToggle.addEventListener('click', () => {
+      // Toggle the visibility of the navigation menu
+      nav.classList.toggle('nav--visible');
+      // Toggle a class on the body to change the hamburger icon to a close icon
+      body.classList.toggle('nav-open');
+    });
+
+    // Close the mobile menu when a navigation link is clicked
+    const navLinks = document.querySelectorAll('nav a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('nav--visible');
+        body.classList.remove('nav-open');
+      });
+    });
+  </script>
 </body>
 </html>

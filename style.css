@@ -99,6 +99,9 @@ nav ul {
     margin: 0;
     padding: 0;
     list-style: none;
+    /* ✅ ADDED: Align items center for button vertical alignment */
+    display: flex;
+    align-items: center;
 }
 
 nav ul li {
@@ -144,6 +147,28 @@ nav a:focus::after {
     transform: scaleX(1);
     transform-origin: bottom left;
 }
+
+/* ✅ NEW: Style for the 'Register Now' button in the navbar */
+nav .nav-cta {
+    background-color: #E57373;
+    color: #F5F5F5 !important; /* Use !important to override default link color */
+    padding: 8px 20px;
+    border-radius: 6px;
+    font-weight: 700;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+nav .nav-cta:hover {
+    background-color: #d85c5c;
+    color: #FFF !important; /* Ensure hover color is also overridden */
+    transform: translateY(-2px);
+}
+
+/* Remove the underline effect from the CTA button */
+nav .nav-cta::after {
+    display: none;
+}
+
 
 /* --- Main Content Sections --- */
 main section {
@@ -438,6 +463,57 @@ main section {
     color: #E57373;
 }
 
+/* --- ✅ NEW: MOBILE NAVIGATION STYLES --- */
+.nav-toggle {
+    display: none; /* Hide hamburger on desktop */
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    padding: 5px;
+    position: relative;
+    z-index: 2000;
+}
+
+.hamburger {
+    display: block;
+    position: relative;
+}
+
+.hamburger,
+.hamburger::before,
+.hamburger::after {
+    background-color: #FFDAB9;
+    width: 2em;
+    height: 3px;
+    border-radius: 1em;
+    transition: transform 0.3s ease-in-out, opacity 0.15s linear;
+}
+
+.hamburger::before,
+.hamburger::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+
+.hamburger::before { top: -8px; }
+.hamburger::after { bottom: -8px; }
+
+/* Animate hamburger to a close 'X' icon when nav is open */
+.nav-open .hamburger {
+    transform: rotate(45deg);
+}
+
+.nav-open .hamburger::before {
+    transform: rotate(90deg) translate(-8px);
+}
+
+.nav-open .hamburger::after {
+    opacity: 0;
+}
+
+
 /* --- ✅ RESPONSIVE DESIGN ADJUSTMENTS --- */
 
 /* Medium Devices (Tablets, 992px and down) */
@@ -472,21 +548,49 @@ main section {
     h1 { font-size: 2.5em; }
     h2 { font-size: 2em; margin-bottom: 40px; }
     main section { padding: 60px 0; }
-
-    /* Adjust header for smaller screens */
-    header .container {
-        flex-direction: column;
-        gap: 15px;
+    
+    /* --- ✅ MOBILE NAVIGATION ACTIVATION --- */
+    .nav-toggle {
+        display: block; /* Show the hamburger button */
     }
 
-    nav ul {
-        text-align: center;
+    nav {
+        display: block;
+        position: absolute;
+        background: rgba(37, 37, 37, 0.98);
+        backdrop-filter: blur(15px);
+        top: 100%; /* Position dropdown below the header */
+        left: 0;
+        right: 0;
+        width: 100%;
+        
+        /* Hide menu by default and set origin for dropdown animation */
+        transform-origin: top;
+        transform: scaleY(0);
+        transition: transform 0.3s ease-in-out;
     }
 
-    nav ul li {
-        margin: 0 10px;
+    nav.nav--visible {
+        transform: scaleY(1); /* Show menu when class is added */
     }
     
+    nav ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem; /* Space out links vertically */
+        padding: 2rem 0;
+    }
+    
+    nav ul li {
+        margin-left: 0; /* Remove horizontal margin */
+    }
+    
+    nav a {
+        font-size: 1.2rem;
+    }
+    /* --- End Mobile Navigation --- */
+
     .profile-card {
         padding: 50px 25px;
     }
@@ -514,17 +618,6 @@ main section {
     h1 { font-size: 2.2em; }
     h2 { font-size: 1.8em; }
     h3 { font-size: 1.3em; }
-
-    /* Stack navigation items vertically for very small screens */
-    nav ul {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-    }
-    
-    nav ul li {
-        margin: 0;
-    }
 
     .profile-card h1 {
         font-size: 2em;
