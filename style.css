@@ -2,7 +2,6 @@
 body {
     background-color: #1a1a1a;
     color: #F5F5F5;
-    /* UPDATED: Set a uniform 'Lucida' font for the entire body */
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     margin: 0;
     line-height: 1.7;
@@ -13,14 +12,13 @@ body {
 
 .container {
     width: 90%;
-    max-width: 1100px;
+    max-width: 1200px;
     margin: auto;
     overflow: hidden;
     padding: 20px 0;
 }
 
 h1, h2, h3 {
-    /* UPDATED: Font will now be inherited from the body for uniformity */
     font-family: inherit;
     font-weight: 700;
     color: #FFDAB9;
@@ -28,12 +26,12 @@ h1, h2, h3 {
 }
 
 h1 {
-    font-size: 3em;
+    font-size: 2.8em;
     margin-bottom: 10px;
 }
 
 h2 {
-    font-size: 2.2em;
+    font-size: 2em;
     text-align: center;
     margin-bottom: 50px;
 }
@@ -51,7 +49,6 @@ a {
 a:hover {
     color: #FFDAB9;
 }
-
 
 /* --- Header & Navigation --- */
 header {
@@ -99,7 +96,6 @@ nav ul {
     margin: 0;
     padding: 0;
     list-style: none;
-    /* ✅ ADDED: Align items center for button vertical alignment */
     display: flex;
     align-items: center;
 }
@@ -110,7 +106,6 @@ nav ul li {
 }
 
 nav a {
-    /* UPDATED: Font will now be inherited from the body for uniformity */
     font-family: inherit;
     font-size: 16px;
     font-weight: 400;
@@ -148,10 +143,9 @@ nav a:focus::after {
     transform-origin: bottom left;
 }
 
-/* ✅ NEW: Style for the 'Register Now' button in the navbar */
 nav .nav-cta {
     background-color: #E57373;
-    color: #F5F5F5 !important; /* Use !important to override default link color */
+    color: #F5F5F5 !important;
     padding: 8px 20px;
     border-radius: 6px;
     font-weight: 700;
@@ -160,13 +154,83 @@ nav .nav-cta {
 
 nav .nav-cta:hover {
     background-color: #d85c5c;
-    color: #FFF !important; /* Ensure hover color is also overridden */
+    color: #FFF !important;
     transform: translateY(-2px);
 }
 
-/* Remove the underline effect from the CTA button */
 nav .nav-cta::after {
     display: none;
+}
+
+/* --- Hero Video Section --- */
+#hero {
+    position: relative;
+    height: 85vh; /* Adjust height as needed */
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    color: #fff;
+}
+
+#hero-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translateX(-50%) translateY(-50%);
+    z-index: -1;
+}
+
+#hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 0;
+}
+
+.hero-text {
+    position: relative;
+    z-index: 1;
+    padding: 20px;
+}
+
+.hero-text h1 {
+    font-size: 3.5em; 
+    color: #fff;
+    font-weight: 700;
+    margin: 0;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+    display: inline;
+}
+
+.hero-text p {
+    font-size: 1.5em; 
+    font-weight: 300;
+    margin-top: 10px;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+    display: block;
+}
+
+/* Blinking Cursor for Typewriter */
+.typing-cursor {
+    border-right: .12em solid #E57373;
+    animation: blink-caret .75s step-end infinite;
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: #E57373; }
 }
 
 
@@ -188,15 +252,14 @@ main section {
     display: flex;
     align-items: center;
     gap: 40px;
-    /* MODIFIED: Increased max-width for a slightly wider card */
-    max-width: 1700px; 
+    max-width: 1100px;
     margin: 0 auto;
     text-align: left;
 }
 
 .profile-image {
-    width: 400px;
-    height: 400px;
+    width: 300px;
+    height: 300px;
     border-radius: 50%;
     border: 4px solid #fff;
     outline: 2px solid #E57373;
@@ -213,9 +276,9 @@ main section {
 
 .profile-info {
     flex-grow: 1;
-    background-color: rgba(0, 0, 0, 0.8); 
-    padding: 30px; 
-    border-radius: 8px; 
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 30px;
+    border-radius: 8px;
 }
 
 .profile-card h1 {
@@ -233,7 +296,7 @@ main section {
 }
 
 .profile-card p {
-    font-size: 1em; 
+    font-size: 1em;
     line-height: 1.8;
     color: #F5F5F5;
     margin-bottom: 40px;
@@ -241,7 +304,7 @@ main section {
 
 .profile-highlights {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); 
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     text-align: left;
     border-top: 1px solid rgba(255, 218, 185, 0.3);
@@ -272,7 +335,6 @@ main section {
     line-height: 1.5;
 }
 
-
 /* --- Gallery Section --- */
 #gallery {
     background: linear-gradient(rgba(26, 26, 26, 0.85), rgba(26, 26, 26, 0.85)), url('graphic.jpg') no-repeat center center;
@@ -299,7 +361,7 @@ main section {
 
 .video-container {
     position: relative;
-    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    padding-bottom: 56.25%;
     height: 0;
     overflow: hidden;
     border-radius: 8px;
@@ -314,7 +376,6 @@ main section {
     height: 100%;
     border: 0;
 }
-
 
 /* --- Class Features Section with Background --- */
 #class-features {
@@ -358,36 +419,50 @@ main section {
 
 .testimonial-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
     gap: 40px;
     margin-top: 40px;
 }
 
 .testimonial-card {
+    display: flex;
+    align-items: center;
+    gap: 25px;
     background-color: rgba(255, 218, 185, 0.1);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 218, 185, 0.2);
-    border-left: 4px solid #E57373;
     padding: 30px;
-    border-radius: 0 8px 8px 0;
+    border-radius: 8px;
 }
 
-.testimonial-card blockquote {
+.testimonial-avatar {
+    flex-shrink: 0;
+}
+
+.testimonial-avatar img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #E57373;
+}
+
+.testimonial-content blockquote {
     font-size: 1.1em;
     font-style: italic;
     font-weight: 400;
-    margin: 0 0 20px 0;
+    margin: 0 0 15px 0;
     color: #F5F5F5;
     border-left: none;
 }
 
-.testimonial-card cite {
+.testimonial-content cite {
     font-weight: 700;
     color: #FFDAB9;
     font-style: normal;
 }
 
-/* --- NEW STYLES FOR THE REGISTER BUTTON --- */
+/* --- Register Button --- */
 .register-now-box {
     text-align: center;
     margin-top: 60px;
@@ -399,7 +474,7 @@ main section {
     color: #F5F5F5;
     padding: 15px 40px;
     border-radius: 8px;
-    font-family: inherit; 
+    font-family: inherit;
     font-size: 1.1em;
     font-weight: 700;
     text-transform: uppercase;
@@ -413,11 +488,11 @@ main section {
     transform: translateY(-3px);
 }
 
-/* --- Contact Section (Updated for Maximum Compactness) --- */
+/* --- Contact Section --- */
 #contact {
     background-color: #FFDAB9;
     text-align: center;
-    padding: 30px 0; 
+    padding: 60px 0; /* Increased padding */
 }
 
 #contact h2 {
@@ -428,7 +503,7 @@ main section {
 #contact .contact-intro p {
     max-width: 600px;
     color: #645140;
-    margin: 0 auto 20px auto;
+    margin: 0 auto 30px auto; /* Increased bottom margin */
     font-size: 1.1em;
     line-height: 1.8;
 }
@@ -439,6 +514,7 @@ main section {
     justify-content: center;
     align-items: center;
     gap: 40px;
+    margin-bottom: 60px; /* Added margin to separate from new button */
 }
 
 .contact-item {
@@ -463,9 +539,14 @@ main section {
     color: #E57373;
 }
 
-/* --- ✅ NEW: MOBILE NAVIGATION STYLES --- */
+#contact .register-now-box {
+    margin-top: 0; /* Reset margin for this specific instance */
+}
+
+
+/* --- Mobile Navigation --- */
 .nav-toggle {
-    display: none; /* Hide hamburger on desktop */
+    display: none;
     background: transparent;
     border: 0;
     cursor: pointer;
@@ -500,7 +581,6 @@ main section {
 .hamburger::before { top: -8px; }
 .hamburger::after { bottom: -8px; }
 
-/* Animate hamburger to a close 'X' icon when nav is open */
 .nav-open .hamburger {
     transform: rotate(45deg);
 }
@@ -513,14 +593,13 @@ main section {
     opacity: 0;
 }
 
-
-/* --- ✅ RESPONSIVE DESIGN ADJUSTMENTS --- */
+/* --- Responsive Design --- */
 
 /* Medium Devices (Tablets, 992px and down) */
 @media (max-width: 992px) {
     .profile-card {
-        flex-direction: column; 
-        text-align: center; 
+        flex-direction: column;
+        text-align: center;
         gap: 30px;
     }
 
@@ -530,7 +609,7 @@ main section {
     
     .profile-highlights {
         grid-template-columns: 1fr;
-        text-align: left; /* Keep text aligned left for readability */
+        text-align: left;
     }
 
     .profile-image {
@@ -546,12 +625,15 @@ main section {
 /* Small Devices (Landscape Phones, 768px and down) */
 @media (max-width: 768px) {
     h1 { font-size: 2.5em; }
-    h2 { font-size: 2em; margin-bottom: 40px; }
+    h2 { font-size: 1.8em; margin-bottom: 40px; }
     main section { padding: 60px 0; }
     
-    /* --- ✅ MOBILE NAVIGATION ACTIVATION --- */
+    .hero-text h1 { font-size: 2.5em; }
+    .hero-text p { font-size: 1.2em; }
+    #hero { height: 70vh; }
+
     .nav-toggle {
-        display: block; /* Show the hamburger button */
+        display: block;
     }
 
     nav {
@@ -559,37 +641,33 @@ main section {
         position: absolute;
         background: rgba(37, 37, 37, 0.98);
         backdrop-filter: blur(15px);
-        top: 100%; /* Position dropdown below the header */
+        top: 100%;
         left: 0;
         right: 0;
         width: 100%;
-        
-        /* Hide menu by default and set origin for dropdown animation */
         transform-origin: top;
         transform: scaleY(0);
         transition: transform 0.3s ease-in-out;
     }
 
     nav.nav--visible {
-        transform: scaleY(1); /* Show menu when class is added */
+        transform: scaleY(1);
     }
     
     nav ul {
-        display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 1.5rem; /* Space out links vertically */
+        gap: 1.5rem;
         padding: 2rem 0;
     }
     
     nav ul li {
-        margin-left: 0; /* Remove horizontal margin */
+        margin-left: 0;
     }
     
     nav a {
         font-size: 1.2rem;
     }
-    /* --- End Mobile Navigation --- */
 
     .profile-card {
         padding: 50px 25px;
@@ -601,9 +679,12 @@ main section {
     }
     
     .videos-grid, .testimonial-grid {
-        /* Adjusting minmax for better fit on smaller screens */
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 25px;
+        grid-template-columns: 1fr;
+    }
+
+    .testimonial-card {
+        flex-direction: column;
+        text-align: center;
     }
 
     .contact-details {
@@ -616,8 +697,12 @@ main section {
 @media (max-width: 576px) {
     body { font-size: 15px; }
     h1 { font-size: 2.2em; }
-    h2 { font-size: 1.8em; }
+    h2 { font-size: 1.6em; }
     h3 { font-size: 1.3em; }
+
+    .hero-text h1 { font-size: 2em; }
+    .hero-text p { font-size: 1.1em; }
+    #hero { height: 60vh; }
 
     .profile-card h1 {
         font-size: 2em;
@@ -635,8 +720,7 @@ main section {
         padding-top: 20px;
     }
 
-    .videos-grid, .testimonial-grid, .features-grid {
-        /* Single column layout for very small screens */
+    .features-grid {
         grid-template-columns: 1fr;
     }
 
