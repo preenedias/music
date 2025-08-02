@@ -42,6 +42,20 @@
     </div>
   </header>
 
+  <!-- Hero Video Section -->
+  <section id="hero">
+    <video autoplay muted loop playsinline id="hero-video">
+      <!-- Replace with your own video file -->
+      <source src="vocal.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div class="hero-text">
+      <!-- Text will be inserted by JavaScript -->
+      <h1 id="hero-title"></h1>
+      <p id="hero-subtitle"></p>
+    </div>
+  </section>
+
   <main>
     <!-- About Section -->
     <section id="about">
@@ -127,9 +141,6 @@
             <p>Build confidence and stage presence. Learn how to connect with an audience and deliver powerful, emotive performances.</p>
           </div>
         </div>
-        <div class="register-now-box">
-          <a href="https://forms.gle/yQ8vHAuSLSgFw6n37" target="_blank" class="cta-button">Register Now</a>
-        </div>
       </div>
     </section>
 
@@ -139,16 +150,26 @@
         <h2>Student Testimonials</h2>
         <div class="testimonial-grid">
           <div class="testimonial-card">
-            <blockquote>
-              "Preene transformed my voice! Her technical guidance is second to none. I've gained so much confidence in just a few months."
-            </blockquote>
-            <cite>- Alex Johnson</cite>
+            <div class="testimonial-avatar">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1887&auto=format&fit=crop" alt="Photo of Alex Johnson">
+            </div>
+            <div class="testimonial-content">
+              <blockquote>
+                "Preene transformed my voice! Her technical guidance is second to none. I've gained so much confidence in just a few months."
+              </blockquote>
+              <cite>- Alex Johnson</cite>
+            </div>
           </div>
           <div class="testimonial-card">
-            <blockquote>
-              "The best vocal coach I've ever had. She is patient, insightful, and truly cares about her students' progress. The lessons are inspiring."
-            </blockquote>
-            <cite>- Samantha Lee</cite>
+            <div class="testimonial-avatar">
+              <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=2070&auto=format&fit=crop" alt="Photo of Samantha Lee">
+            </div>
+            <div class="testimonial-content">
+              <blockquote>
+                "The best vocal coach I've ever had. She is patient, insightful, and truly cares about her students' progress. The lessons are inspiring."
+              </blockquote>
+              <cite>- Samantha Lee</cite>
+            </div>
           </div>
         </div>
       </div>
@@ -167,10 +188,6 @@
             <a href="mailto:contact@preenedias.com">contact@preenedias.com</a>
           </div>
           <div class="contact-item">
-            <i class="fas fa-phone"></i>
-            <a href="tel:+1234567890">+1 (234) 567-890</a>
-          </div>
-          <div class="contact-item">
             <i class="fas fa-map-marker-alt"></i>
             <span>Mumbai, India</span>
           </div>
@@ -178,6 +195,10 @@
             <i class="fab fa-instagram"></i>
             <a href="https://www.instagram.com/your-instagram-handle" target="_blank">Instagram</a>
           </div>
+        </div>
+        <!-- ✅ NEW: Register button added to contact section -->
+        <div class="register-now-box">
+          <a href="https://forms.gle/yQ8vHAuSLSgFw6n37" target="_blank" class="cta-button">Register Now</a>
         </div>
       </div>
     </section>
@@ -189,26 +210,65 @@
     </div>
   </footer>
 
-  <!-- ✅ ADDED: JavaScript for mobile navigation -->
+  <!-- Navigation Script -->
   <script>
     const navToggle = document.querySelector('.nav-toggle');
     const nav = document.querySelector('nav');
     const body = document.querySelector('body');
 
     navToggle.addEventListener('click', () => {
-      // Toggle the visibility of the navigation menu
       nav.classList.toggle('nav--visible');
-      // Toggle a class on the body to change the hamburger icon to a close icon
       body.classList.toggle('nav-open');
     });
 
-    // Close the mobile menu when a navigation link is clicked
     const navLinks = document.querySelectorAll('nav a');
     navLinks.forEach(link => {
       link.addEventListener('click', () => {
         nav.classList.remove('nav--visible');
         body.classList.remove('nav-open');
       });
+    });
+  </script>
+
+  <!-- Typewriter Effect Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const heroTitleEl = document.getElementById('hero-title');
+      const heroSubtitleEl = document.getElementById('hero-subtitle');
+
+      const titleText = "Preene Dias Vocal Studio";
+      const subtitleText = "The Sound of Refinement";
+      const typingSpeed = 100; // Time in ms between each character
+      const pauseAfterAnimation = 2000; // Time in ms to pause after completion
+
+      function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+      }
+
+      async function typeLine(element, text) {
+        element.classList.add('typing-cursor');
+        for (const char of text) {
+          element.textContent += char;
+          await sleep(typingSpeed);
+        }
+        element.classList.remove('typing-cursor');
+      }
+
+      async function typewriterLoop() {
+        while (true) {
+          heroTitleEl.textContent = '';
+          heroSubtitleEl.textContent = '';
+
+          await typeLine(heroTitleEl, titleText);
+          await typeLine(heroSubtitleEl, subtitleText);
+
+          heroSubtitleEl.classList.add('typing-cursor');
+          await sleep(pauseAfterAnimation);
+          heroSubtitleEl.classList.remove('typing-cursor');
+        }
+      }
+      
+      typewriterLoop();
     });
   </script>
 </body>
