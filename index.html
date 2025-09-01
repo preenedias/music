@@ -10,11 +10,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet" />
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" as="style">
 
   <!-- Font Awesome for Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-  <!-- ✅ Updated Favicon -->
+  <!-- Favicon -->
   <link rel="icon" type="image/png" sizes="16x16" href="https://img.icons8.com/ios/16/000000/music.png" />
 </head>
 
@@ -24,7 +25,6 @@
       <div class="logo">
         <a href="#"><i class="fas fa-music"></i> Preene Dias</a>
       </div>
-      <!-- ✅ ADDED: Hamburger menu button for mobile -->
       <button class="nav-toggle" aria-label="toggle navigation">
         <span class="hamburger"></span>
       </button>
@@ -35,7 +35,6 @@
           <li><a href="#class-features">Classes</a></li>
           <li><a href="#testimonials">Testimonials</a></li>
           <li><a href="#contact">Contact</a></li>
-          <!-- ✅ ADDED: Register Now button in the navigation -->
           <li><a href="https://forms.gle/yQ8vHAuSLSgFw6n37" target="_blank" class="nav-cta">Register Now</a></li>
         </ul>
       </nav>
@@ -44,13 +43,11 @@
 
   <!-- Hero Video Section -->
   <section id="hero">
-    <video autoplay muted loop playsinline id="hero-video">
-      <!-- Replace with your own video file -->
-      <source src="vocal.mp4" type="video/mp4">
-      Your browser does not support the video tag.
+    <video autoplay muted loop playsinline id="hero-video" poster="images/hero-fallback.jpg" aria-hidden="true">
+      <source src="images/vocal.mp4" type="video/mp4">
+      <source src="images/vocal.webm" type="video/webm">
     </video>
     <div class="hero-text">
-      <!-- Text will be inserted by JavaScript -->
       <h1 id="hero-title"></h1>
       <p id="hero-subtitle"></p>
     </div>
@@ -61,36 +58,31 @@
     <section id="about">
       <div class="container">
         <div class="profile-card">
-          <div class="profile-image">
-            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1888&auto=format&fit=crop" alt="Profile photo of Preene Dias" />
-          </div>
-          <div class="profile-info">
-            <h1>Preene Dias</h1>
-            <h2>Professional Vocal Instructor</h2>
-            <p>
-              With over 15 years of professional performance and teaching experience, Preene brings a wealth of knowledge and passion to her students. Her teaching philosophy is centered on building a strong technical foundation while nurturing each student's unique artistic voice.
-            </p>
-            <div class="profile-highlights">
-              <div class="highlight-item">
-                <i class="fas fa-award"></i>
-                <div class="highlight-text">
-                  <h3>Expert Teacher</h3>
-                  <span>15+ years of teaching experience.</span>
+          <div class="profile-info-about">
+            <div class="about-points">
+              <div class="about-point-item">
+                <div class="about-point-image">
+                  <img src="images/childhood.jpg" alt="Preene's musical journey" />
                 </div>
+                <p>Music has always been more than just sound for me—it was a faithful companion from childhood, a voice that spoke even when words fell short. I grew up fascinated by the way melodies could brighten moods, stir emotions, and tell stories without uttering a single syllable. What began as innocent curiosity—humming along to tunes, trying to imitate rhythms—slowly deepened into an unwavering dedication. This love for expression, this realization that music could both mirror and move the soul, is what firmly set me on the path of music.</p>
               </div>
-              <div class="highlight-item">
-                <i class="fas fa-microphone-alt"></i>
-                <div class="highlight-text">
-                  <h3>Active Performer</h3>
-                  <span>Real-world stage & performance insights.</span>
+              <div class="about-point-item">
+                <div class="about-point-image">
+                  <img src="images/training.jpg" alt="Preene's formal training" />
                 </div>
+                <p>To transform passion into true artistry, I pursued formal training under seasoned mentors who not only shaped my technique but also my mindset as a musician. The journey was a blend of discipline and discovery—rigorous daily practice, immersion in theory, and mastery of stage techniques that sharpened my confidence and versatility. Through this process, I began to appreciate the layers of music beyond its surface beauty: the science of sound, the art of performance, and the discipline that anchors both. Training didn’t just make me a better musician; it made me a more grounded artist who understands the responsibility that comes with sharing music.</p>
               </div>
-              <div class="highlight-item">
-                <i class="fas fa-music"></i>
-                <div class="highlight-text">
-                  <h3>Certified Instructor</h3>
-                  <span>Professional and structured learning.</span>
+              <div class="about-point-item">
+                <div class="about-point-image">
+                  <img src="images/certificate.jpg" alt="Preene's certifications" />
                 </div>
+                <p>Along this journey of growth, I have earned certifications that serve as both recognition and reinforcement of my commitment to music. Each certification represents countless hours of practice, learning, and reflection. More than just credentials, they are milestones—moments where I could pause, look back at the effort invested, and look forward with renewed determination. These achievements not only added credibility to my craft but also gave me the confidence to explore broader horizons, experiment with new forms, and continually expand my artistic vocabulary.</p>
+              </div>
+              <div class="about-point-item">
+                <div class="about-point-image">
+                  <img src="images/performance.jpg" alt="Preene's performances" />
+                </div>
+                <p>Performance has been the true test and reward of this journey. I have had the privilege of performing at several major events, each stage adding a new dimension to my growth as an artist. Every performance has been more than just an opportunity to present my work; it has been a chance to connect—sometimes with strangers, sometimes with familiar faces—through the universal language of music. These experiences have taught me the profound bond between performer and listener, a shared emotional space where music becomes the bridge. With each event, I have grown not only in skill but also in the ability to share pieces of myself with the world through sound.</p>
               </div>
             </div>
           </div>
@@ -105,19 +97,27 @@
         <h3 class="gallery-subtitle">Hear Preene Sing</h3>
         <div class="videos-grid">
           <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID_HERE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <img class="tribe-thumbnail" src="images/gallery1-thumbnail.png" alt="Thumbnail for Gallery Video 1" data-video-id="1s1lzprI4T3NtdVQ-eOG6idkfvMCYziHh" />
+            <iframe class="tribe-video" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="display: none;"></iframe>
+            <p class="video-caption">Judge Showcase</p>
           </div>
           <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/YOUR_SECOND_VIDEO_ID_HERE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <img class="tribe-thumbnail" src="images/gallery2-thumbnail.png" alt="Thumbnail for Gallery Video 2" data-video-id="12qW9VekhSmATfizbVq-MhmyICOu7ZtDU" />
+            <iframe class="tribe-video" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="display: none;"></iframe>
+            <p class="video-caption">Judge Showcase at VTU Fest</p>
           </div>
         </div>
         <h3 class="gallery-subtitle">Join the Tribe</h3>
         <div class="videos-grid">
           <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/YOUR_THIRD_VIDEO_ID_HERE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <img class="tribe-thumbnail" src="images/enika-thumbnail.png" alt="Thumbnail for Tribe Video 1" data-video-id="1wsYXgC7M1r-BLpGgwjU7K0uI2TNWu8Jd" />
+            <iframe class="tribe-video" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="display: none;"></iframe>
+            <p class="video-caption">Enika's Journey</p>
           </div>
           <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/YOUR_FOURTH_VIDEO_ID_HERE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <img class="tribe-thumbnail" src="images/sarah-thumbnail.png" alt="Thumbnail for Tribe Video 2" data-video-id="1JHjJHleMzbsbrtk7fYcMINvFqp85Ts0C" />
+            <iframe class="tribe-video" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="display: none;"></iframe>
+            <p class="video-caption">Sarah's Experience</p>
           </div>
         </div>
       </div>
@@ -129,16 +129,16 @@
         <h2>What You Will Learn</h2>
         <div class="features-grid">
           <div class="feature-card">
-            <h3>Personalized Curriculum</h3>
-            <p>Lesson plans are tailored to your individual goals, skill level, and vocal style, from contemporary to classical.</p>
+            <h3>Learn Solo or Together</h3>
+            <p>Learn at your own pace with private sessions or thrive in a collaborative group setting</p>
           </div>
           <div class="feature-card">
-            <h3>Core Vocal Technique</h3>
-            <p>Master essential skills including breath support, pitch control, resonance, and vocal agility to build a strong foundation.</p>
+            <h3>Music Exam Preparation</h3>
+            <p>Ace your music exams with confidence. From technique to theory, the lessons cover every step to prepare you for TCL and other leading music exams so you’re stage and exam ready.</p>
           </div>
           <div class="feature-card">
-            <h3>Performance & Artistry</h3>
-            <p>Build confidence and stage presence. Learn how to connect with an audience and deliver powerful, emotive performances.</p>
+            <h3>Dive into Diverse Genres</h3>
+            <p>Explore a world of genres! Pop, jazz, gospel, rock, a cappella, and beyond. Master the style you love while discovering new musical horizons.</p>
           </div>
         </div>
       </div>
@@ -147,30 +147,123 @@
     <!-- Testimonials Section -->
     <section id="testimonials">
       <div class="container">
-        <h2>Student Testimonials</h2>
-        <div class="testimonial-grid">
-          <div class="testimonial-card">
-            <div class="testimonial-avatar">
-              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1887&auto=format&fit=crop" alt="Photo of Alex Johnson">
+        <div class="testimonial-slider">
+          <div class="testimonial-grid">
+            <!-- Testimonial 1 -->
+            <div class="testimonial-card">
+              <div class="testimonial-avatar">
+                <img src="images/Enika Bose.jpg" alt="Photo of Enika Bose">
+              </div>
+              <div class="testimonial-content">
+                <blockquote>
+                  <span class="preview-text">"It's been a while now since I have joined Ms Preene Dias's class for western vocals and it has been an amazing journey so far. My voice feels more refined and the transition has been swift. She is a sweet and humble lady..."</span>
+                  <span class="full-text" style="display: none;">"It's been a while now since I have joined Ms Preene Dias's class for western vocals and it has been an amazing journey so far. My voice feels more refined and the transition has been swift. She is a sweet and humble lady. With her the ratio feels more like a friend and her classes are truly enjoyable!"</span>
+                </blockquote>
+                <a href="#" class="read-more" data-expanded="false">Read More</a>
+                <cite>- Enika Bose</cite>
+              </div>
             </div>
-            <div class="testimonial-content">
-              <blockquote>
-                "Preene transformed my voice! Her technical guidance is second to none. I've gained so much confidence in just a few months."
-              </blockquote>
-              <cite>- Alex Johnson</cite>
+            <!-- Testimonial 2 -->
+            <div class="testimonial-card">
+              <div class="testimonial-avatar">
+                <img src="images/Shriniketh.jpg" alt="Photo of Shriniketh">
+              </div>
+              <div class="testimonial-content">
+                <blockquote>
+                  <span class="preview-text">"Preeni Ma'am is an amazing teacher, who nurtures the passion of music in her students. She cares for her students deeply and takes the effort to make sure..."</span>
+                  <span class="full-text" style="display: none;">"Preeni Ma'am is an amazing teacher, who nurtures the passion of music in her students. She cares for her students deeply and takes the effort to make sure that they achieve what they want to, by being there in every step of their journeys."</span>
+                </blockquote>
+                <a href="#" class="read-more" data-expanded="false">Read More</a>
+                <cite>- Shriniketh</cite>
+              </div>
+            </div>
+            <!-- Testimonial 3 -->
+            <div class="testimonial-card">
+              <div class="testimonial-avatar">
+                <img src="images/Karishma Ahuja.jpg" alt="Photo of Karishma Ahuja">
+              </div>
+              <div class="testimonial-content">
+                <blockquote>
+                  <span class="preview-text">"Preeni mam has played a significant role in nurturing and developing my daughter Vaanya’s talent in singing. She teaches with a lot of love and patience and bonds..."</span>
+                  <span class="full-text" style="display: none;">"Preeni mam has played a significant role in nurturing and developing my daughter Vaanya’s talent in singing. She teaches with a lot of love and patience and bonds beautifully with her students like a friend and a mentor. Preeni mam shares her knowledge wholeheartedly and motivates the students to express without inhibitions. This has helped my daughter in building her confidence to present her art before the audience."</span>
+                </blockquote>
+                <a href="#" class="read-more" data-expanded="false">Read More</a>
+                <cite>- Karishma Ahuja, Vaanya’s parent</cite>
+              </div>
+            </div>
+            <!-- Testimonial 4 -->
+            <div class="testimonial-card">
+              <div class="testimonial-avatar">
+                <img src="images/Vivek Das Gupta.jpg" alt="Photo of Vivek Das Gupta">
+              </div>
+              <div class="testimonial-content">
+                <blockquote>
+                  <span class="preview-text">"My son, Naman, has been taking Western vocal lessons with Preene Dias for nearly a year, and we've been thrilled with his development. Preene is a very patient..."</span>
+                  <span class="full-text" style="display: none;">"My son, Naman, has been taking Western vocal lessons with Preene Dias for nearly a year, and we've been thrilled with his development. Preene is a very patient and encouraging teacher. She provides regular, constructive feedback with a smile, which helps her students get better while also enjoying the process. The classes are always engaging, and the students have a great time, which leads to fantastic results. We feel very fortunate to have her as a teacher and would highly recommend her to anyone."</span>
+                </blockquote>
+                <a href="#" class="read-more" data-expanded="false">Read More</a>
+                <cite>- Vivek Das Gupta, Naman's parent</cite>
+              </div>
+            </div>
+            <!-- Testimonial 5 -->
+            <div class="testimonial-card">
+              <div class="testimonial-avatar">
+                <img src="images/Rituraj.jpg" alt="Photo of Rituraj">
+              </div>
+              <div class="testimonial-content">
+                <blockquote>
+                  <span class="preview-text">"We connected with Preene Ma'am and she's been mentoring Kiaan for nearly two months now. The progress has been remarkable! Kiaan's vocals have improved dramatically..."</span>
+                  <span class="full-text" style="display: none;">"We connected with Preene Ma'am and she's been mentoring Kiaan for nearly two months now. The progress has been remarkable! Kiaan's vocals have improved dramatically, and he's gained confidence to perform on stage. We're incredibly grateful to Preene Ma'am for her expertise and support."</span>
+                </blockquote>
+                <a href="#" class="read-more" data-expanded="false">Read More</a>
+                <cite>- Rituraj, Kiaan’s parent</cite>
+              </div>
+            </div>
+            <!-- Testimonial 6 -->
+            <div class="testimonial-card">
+              <div class="testimonial-avatar">
+                <img src="images/Naren.jpg" alt="Photo of Naren">
+              </div>
+              <div class="testimonial-content">
+                <blockquote>
+                  <span class="preview-text">"I’ve been learning Western vocals with Preene, and as a beginner, her guidance has been invaluable. She has a wonderful voice and a strong focus on building solid..."</span>
+                  <span class="full-text" style="display: none;">"I’ve been learning Western vocals with Preene, and as a beginner, her guidance has been invaluable. She has a wonderful voice and a strong focus on building solid foundations, which has greatly improved my pitch and confidence. She is excellent at breaking things down, slowing the pace, and making concepts simple to grasp and practice. Her teaching style is very approachable and empathetic, with assignments tailored to each student’s needs. I especially appreciate how she patiently demonstrates and repeats until we get it right. I’d highly recommend her to anyone interested in learning singing, especially beginners."</span>
+                </blockquote>
+                <a href="#" class="read-more" data-expanded="false">Read More</a>
+                <cite>- Naren</cite>
+              </div>
+            </div>
+            <!-- Testimonial 7 -->
+            <div class="testimonial-card">
+              <div class="testimonial-avatar">
+                <img src="images/Sarah.jpg" alt="Photo of Sarah">
+              </div>
+              <div class="testimonial-content">
+                <blockquote>
+                  <span class="preview-text">"I've been taking singing classes with Preene mam for 2 years now, and I must say, it's been an incredible experience. The instructor's expertise and passion for music..."</span>
+                  <span class="full-text" style="display: none;">"I've been taking singing classes with Preene mam for 2 years now, and I must say, it's been an incredible experience. The instructor's expertise and passion for music are evident in every session, and their ability to break down complex techniques into manageable parts has been a game-changer for me. The classes are well-structured, and the instructor provides personalized feedback that helps me improve my skills. The atmosphere is supportive and encouraging, which makes it easy to relax and enjoy the learning process. What I appreciate most is the instructor's dedication to helping students achieve their goals, whether it's preparing for performances or simply building confidence in their singing abilities. The classes have not only improved my vocal technique but also boosted my self-assurance. I highly recommend Preene mam to anyone looking to develop their singing skills, whether you're a beginner or an experienced vocalist. The classes are informative, engaging, and most importantly, fun! Five stars isn't enough, I'd give it ten stars if I could."</span>
+                </blockquote>
+                <a href="#" class="read-more" data-expanded="false">Read More</a>
+                <cite>- Sarah</cite>
+              </div>
+            </div>
+            <!-- Testimonial 8 -->
+            <div class="testimonial-card">
+              <div class="testimonial-avatar">
+                <img src="images/reshma.jpg" alt="Photo of Reshma">
+              </div>
+              <div class="testimonial-content">
+                <blockquote>
+                  <span class="preview-text">"I wanna share how much I appreciate your teaching. You explain everything very clearly and always pay attention to even the smallest detail..."</span>
+                  <span class="full-text" style="display: none;">"I wanna share how much I appreciate your teaching. You explain everything very clearly and always pay attention to even the smallest detail, which really helps me improve. I genuinely look forward to every class because you make it fun and engaging while still being focused. Thank you for your dedication and for creating such a positive environment."</span>
+                </blockquote>
+                <a href="#" class="read-more" data-expanded="false">Read More</a>
+                <cite>- Reshma</cite>
+              </div>
             </div>
           </div>
-          <div class="testimonial-card">
-            <div class="testimonial-avatar">
-              <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=2070&auto=format&fit=crop" alt="Photo of Samantha Lee">
-            </div>
-            <div class="testimonial-content">
-              <blockquote>
-                "The best vocal coach I've ever had. She is patient, insightful, and truly cares about her students' progress. The lessons are inspiring."
-              </blockquote>
-              <cite>- Samantha Lee</cite>
-            </div>
-          </div>
+          <button class="testimonial-arrow prev" aria-label="Previous testimonial"><i class="fas fa-chevron-left"></i></button>
+          <button class="testimonial-arrow next" aria-label="Next testimonial"><i class="fas fa-chevron-right"></i></button>
         </div>
       </div>
     </section>
@@ -189,14 +282,13 @@
           </div>
           <div class="contact-item">
             <i class="fas fa-map-marker-alt"></i>
-            <span>Mumbai, India</span>
+            <span>Bangalore, India</span>
           </div>
           <div class="contact-item">
             <i class="fab fa-instagram"></i>
-            <a href="https://www.instagram.com/your-instagram-handle" target="_blank">Instagram</a>
+            <a href="https://www.instagram.com/preene.dias?igsh=d3NrbGxldmt0MDNu" target="_blank">@preene.dias</a>
           </div>
         </div>
-        <!-- ✅ NEW: Register button added to contact section -->
         <div class="register-now-box">
           <a href="https://forms.gle/yQ8vHAuSLSgFw6n37" target="_blank" class="cta-button">Register Now</a>
         </div>
@@ -238,8 +330,8 @@
 
       const titleText = "Preene Dias Vocal Studio";
       const subtitleText = "The Sound of Refinement";
-      const typingSpeed = 100; // Time in ms between each character
-      const pauseAfterAnimation = 2000; // Time in ms to pause after completion
+      const typingSpeed = 100;
+      const pauseAfterAnimation = 2000;
 
       function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
@@ -269,6 +361,151 @@
       }
       
       typewriterLoop();
+    });
+  </script>
+
+  <!-- Testimonial Slider Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const slider = document.querySelector('.testimonial-slider');
+      if (!slider) return;
+
+      const grid = slider.querySelector('.testimonial-grid');
+      const prevButton = slider.querySelector('.testimonial-arrow.prev');
+      const nextButton = slider.querySelector('.testimonial-arrow.next');
+      let cards = Array.from(grid.children);
+
+      if (cards.length <= 1) {
+        prevButton.style.display = 'none';
+        nextButton.style.display = 'none';
+        return;
+      }
+
+      const firstCardClone = cards[0].cloneNode(true);
+      const lastCardClone = cards[cards.length - 1].cloneNode(true);
+      firstCardClone.id = 'first-clone';
+      lastCardClone.id = 'last-clone';
+      grid.appendChild(firstCardClone);
+      grid.prepend(lastCardClone);
+
+      cards = Array.from(grid.children);
+
+      let currentIndex = 1;
+      let isTransitioning = false;
+      
+      function setSliderPosition(instant = false) {
+        if (instant) {
+          grid.style.transition = 'none';
+        } else {
+          grid.style.transition = 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)';
+        }
+
+        const currentCard = cards[currentIndex];
+        const sliderWidth = slider.offsetWidth;
+        const cardWidth = currentCard.offsetWidth;
+        const cardLeft = currentCard.offsetLeft;
+
+        const offsetToCenter = (sliderWidth - cardWidth) / 2;
+        const translateX = cardLeft - offsetToCenter;
+
+        grid.style.transform = `translateX(-${translateX}px)`;
+        
+        cards.forEach(card => card.classList.remove('active'));
+        currentCard.classList.add('active');
+
+        if (instant) {
+          setTimeout(() => {
+            grid.style.transition = 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)';
+          }, 50);
+        }
+      }
+
+      function handleNext() {
+        if (isTransitioning) return;
+        isTransitioning = true;
+        currentIndex++;
+        setSliderPosition();
+      }
+
+      function handlePrev() {
+        if (isTransitioning) return;
+        isTransitioning = true;
+        currentIndex--;
+        setSliderPosition();
+      }
+      
+      grid.addEventListener('transitionend', () => {
+        isTransitioning = false;
+        
+        if (cards[currentIndex].id === 'first-clone') {
+          currentIndex = 1;
+          setSliderPosition(true);
+        } else if (cards[currentIndex].id === 'last-clone') {
+          currentIndex = cards.length - 2;
+          setSliderPosition(true);
+        }
+      });
+
+      nextButton.addEventListener('click', handleNext);
+      prevButton.addEventListener('click', handlePrev);
+
+      setTimeout(() => {
+        setSliderPosition(true);
+      }, 100);
+
+      window.addEventListener('resize', () => setSliderPosition(true));
+    });
+
+    // Tribe Video Toggle with Thumbnails
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.tribe-thumbnail').forEach(thumbnail => {
+        thumbnail.addEventListener('click', () => {
+          const container = thumbnail.parentElement;
+          const videoIframe = container.querySelector('.tribe-video');
+          const videoId = thumbnail.dataset.videoId;
+          const caption = container.querySelector('.video-caption');
+
+          const embedUrl = `https://drive.google.com/file/d/${videoId}/preview`;
+
+          thumbnail.style.display = 'none';
+          caption.style.display = 'none';
+          videoIframe.src = embedUrl;
+          videoIframe.style.display = 'block';
+        });
+      });
+    });
+
+    // Testimonial Read More Toggle
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.read-more').forEach(link => {
+        const content = link.parentElement.querySelector('blockquote');
+        const previewText = content.querySelector('.preview-text');
+        const fullText = content.querySelector('.full-text');
+        const maxLength = 200;
+
+        if (fullText.textContent.length <= maxLength) {
+          link.style.display = 'none';
+        } else {
+          previewText.textContent = fullText.textContent.substring(0, maxLength) + "...";
+        }
+
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const isExpanded = link.getAttribute('data-expanded') === 'true';
+
+          if (isExpanded) {
+            previewText.style.display = 'block';
+            fullText.style.display = 'none';
+            link.textContent = 'Read More';
+            link.setAttribute('data-expanded', 'false');
+          } else {
+            previewText.style.display = 'none';
+            fullText.style.display = 'block';
+            link.textContent = 'Read Less';
+            link.setAttribute('data-expanded', 'true');
+          }
+        });
+      });
     });
   </script>
 </body>
