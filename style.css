@@ -1,3 +1,169 @@
+/* --- Gallery Section --- */
+#gallery {
+  background: linear-gradient(rgba(26, 26, 26, 0.85), rgba(26, 26, 26, 0.85)), url('images/graphic.jpg') no-repeat center center;
+  background-size: cover;
+  background-attachment: fixed;
+  background-color: #1a1a1a;
+  padding: 5rem 0;
+}
+
+.gallery-subtitle {
+  font-family: 'Playfair Display', serif;
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 1.875rem;
+  margin-top: 0;
+}
+
+.gallery-subtitle + .videos-grid + .gallery-subtitle {
+  margin-top: 3.75rem;
+}
+
+.videos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  gap: 2.5rem;
+}
+
+.videos-slider {
+  position: relative;
+  overflow: visible;
+  padding: 1.875rem 0;
+}
+
+.tribe-videos-grid {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.video-container {
+  position: relative;
+  /* Changed from 56.25% (16:9) to ~42.85% (21:9) */
+  padding-bottom: 42.85%;
+  height: 0;
+  overflow: hidden;
+  border: 0.125rem solid #E57373;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.625rem 1.25rem rgba(0, 0, 0, 0.2);
+}
+
+/* Base styles for all videos in the tribe slider */
+.tribe-videos-grid .video-container {
+  flex: 0 0 70%;
+  max-width: 25rem;
+  transform: scale(0.85);
+  opacity: 0.6;
+  transition: transform 0.5s ease, opacity 0.5s ease, flex-basis 0.5s ease, max-width 0.5s ease;
+}
+
+/* Active state for "Join the Tribe" videos */
+.tribe-videos-grid .video-container.active {
+  transform: scale(1);
+  opacity: 1;
+  flex-basis: 80%;
+  max-width: 30rem;
+}
+
+.tribe-video,
+.tribe-thumbnail {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Added object-fit: cover */
+}
+
+.tribe-video {
+    display: none; /* Initially hidden */
+}
+
+.tribe-thumbnail {
+  display: block; /* Initially visible */
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.tribe-thumbnail:hover {
+  opacity: 0.8;
+}
+
+.video-caption {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 5px 10px;
+  margin: 0;
+  font-size: 14px;
+  z-index: 10;
+}
+
+/* --- Arrows Styling (Ensuring they are prominent for the slider) --- */
+/* Arrows for the Tribe Videos Slider */
+.videos-slider .testimonial-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(229, 115, 115, 0.7);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 2.8125rem;
+    height: 2.8125rem;
+    font-size: 1.125rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, outline 0.3s ease;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.videos-slider .testimonial-arrow.prev {
+    left: 0.9375rem;
+}
+
+.videos-slider .testimonial-arrow.next {
+    right: 0.9375rem;
+}
+
+/* --- Testimonials Section Arrows --- */
+.testimonial-slider .testimonial-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(229, 115, 115, 0.7); /* Same styling as video arrows */
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 2.8125rem;
+  height: 2.8125rem;
+  font-size: 1.125rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, outline 0.3s ease;
+  z-index: 20; /* Increased z-index to ensure it's above cards */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.testimonial-slider .testimonial-arrow.prev {
+  left: 1.5rem; /* Positioned to the left, outside the first card */
+}
+
+.testimonial-slider .testimonial-arrow.next {
+  right: 1.5rem; /* Positioned to the right, outside the last card */
+}
+
+/* --- Rest of your CSS --- */
+
 /* --- General Styling --- */
 body {
   background-color: #1a1a1a;
@@ -31,7 +197,7 @@ h1 {
 }
 
 h2 {
-  font-size: 2rem;
+  font-size: 2.5rem;
   text-align: center;
   margin-bottom: 3.125rem;
   position: relative;
@@ -219,27 +385,32 @@ nav .nav-cta::after {
   padding: 1.25rem;
 }
 
-.hero-text h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: 4rem;
-  color: #fff;
-  font-weight: 700;
+/* --- Typography for Hero Title and Subtitle --- */
+#hero-title { /* This targets "The Lost Echo Studio" */
+  font-family: 'Great Vibes', cursive, serif; /* Using Great Vibes */
+  font-size: 4rem; /* Increased size for prominence */
+  color: #FFDAB9; /* Using a warm accent color */
+  font-weight: 400; /* Great Vibes is typically a lighter script */
   margin: 0;
-  text-shadow: 0.125rem 0.125rem 0.5rem rgba(0, 0, 0, 0.7);
-  display: inline;
+  /* Subtle text shadow for depth */
+  text-shadow: 0.05em 0.05em 0.15em rgba(0, 0, 0, 0.6);
+  display: inline; /* Allows it to flow naturally if needed, though likely on its own line */
+  letter-spacing: 0.02em; /* Minor adjustment for script */
 }
 
-.hero-text p {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.7rem;
-  font-weight: 600;
+#hero-subtitle { /* This targets "The Sound of Refinement" */
+  font-family:'Playfair Display', serif; /* Using Great Vibes */
+  font-size: 2.2rem; /* Slightly smaller than title but still impactful */
+  font-weight: 400; /* Consistent with Great Vibes */
   margin-top: 0.625rem;
-  letter-spacing: 0.0625rem;
-  text-shadow: 0.0625rem 0.0625rem 0.25rem rgba(0, 0, 0, 0.7);
+  /* Subtle text shadow */
+  text-shadow: 0.03em 0.03em 0.1em rgba(0, 0, 0, 0.6);
   display: block;
+  letter-spacing: 0.03em; /* Minor adjustment for script */
+  color: #E57373; /* Using a complementary accent color */
 }
 
-/* Blinking Cursor for Typewriter */
+/* --- Blinking Cursor for Typewriter --- */
 .typing-cursor {
   border-right: 0.12em solid #E57373;
   animation: blink-caret 0.75s step-end infinite;
@@ -250,6 +421,9 @@ nav .nav-cta::after {
   50% { border-color: #E57373; }
 }
 
+/* --- Rest of your CSS --- */
+/* ... (all other CSS rules as they were) ... */
+
 /* --- Main Content Sections --- */
 main section {
   padding: 5rem 0;
@@ -258,7 +432,7 @@ main section {
 
 /* --- About Section (Index) --- */
 #about {
-  background: #1a1a1a;
+  background-color: #000000;
   padding: 6.25rem 0;
   text-align: center;
 }
@@ -270,11 +444,21 @@ main section {
   color: #F5F5F5;
 }
 
+/* Highlight style for specific phrases */
+.highlight {
+  color: #FFDAB9;
+  font-weight: bold;
+}
+
+.about-summary strong {
+  font-weight: bold;
+}
+
 .about-link {
   color: #E57373;
   text-decoration: none;
   font-weight: 700;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   letter-spacing: 1px;
   position: relative;
   padding-bottom: 5px;
@@ -302,83 +486,6 @@ main section {
   transform: scaleX(1);
 }
 
-/* --- Gallery Section --- */
-#gallery {
-  background: linear-gradient(rgba(26, 26, 26, 0.85), rgba(26, 26, 26, 0.85)), url('images/graphic.jpg') no-repeat center center;
-  background-size: cover;
-  background-attachment: fixed;
-  background-color: #1a1a1a;
-  padding: 5rem 0;
-}
-
-.gallery-subtitle {
-  font-family: 'Playfair Display', serif;
-  text-align: center;
-  font-size: 1.8rem;
-  margin-bottom: 1.875rem;
-  margin-top: 0;
-}
-
-.gallery-subtitle + .videos-grid + .gallery-subtitle {
-  margin-top: 3.75rem;
-}
-
-.videos-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
-  gap: 2.5rem;
-}
-
-.video-container {
-  position: relative;
-  padding-bottom: 56.25%;
-  height: 0;
-  overflow: hidden;
-  border: 0.125rem solid #E57373;
-  border-radius: 0.5rem;
-  box-shadow: 0 0.625rem 1.25rem rgba(0, 0, 0, 0.2);
-}
-
-.tribe-video {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: none;
-}
-
-.tribe-thumbnail {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border: 0.125rem solid #E57373;
-  border-radius: 0.5rem;
-  box-shadow: 0 0.625rem 1.25rem rgba(0, 0, 0, 0.2);
-  cursor: pointer;
-  transition: opacity 0.3s ease;
-}
-
-.tribe-thumbnail:hover {
-  opacity: 0.8;
-}
-
-.video-caption {
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  color: white;
-  text-align: center;
-  background: rgba(0, 0, 0, 0.6);
-  padding: 5px 10px;
-  margin: 0;
-  font-size: 14px;
-}
-
 /* --- Class Features Section --- */
 #class-features {
   background: linear-gradient(rgba(26, 26, 26, 0.9), rgba(26, 26, 26, 0.9)), url('images/background.jpg') no-repeat center center;
@@ -399,20 +506,85 @@ main section {
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   color: #F5F5F5;
-  padding: 2.1875rem;
+  padding: 1.5rem;
   border: 1px solid #444;
   border-radius: 0.5rem;
   transition: transform 0.3s ease, background-color 0.3s ease;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 20rem;
+  margin: 0 auto;
+  position: relative;
+  padding-top: 7rem;
 }
 
 .feature-card h3 {
   font-family: 'Playfair Display', serif;
   color: #FFDAB9;
+  margin-top: 0;
+}
+
+.feature-card p {
+  margin-top: 0.5rem;
+}
+
+.feature-icon-wrapper {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  background-color: rgba(229, 115, 115, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.feature-icon {
+  font-size: 2.5rem;
+  color: #E57373;
 }
 
 .feature-card:hover {
   transform: translateY(-0.3125rem);
   background-color: #333;
+}
+
+/* --- Gallery Section - New Styles for Images --- */
+.image-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.image-gallery-item {
+  text-align: center;
+  background: rgba(37, 37, 37, 0.8);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #444;
+}
+
+.tribe-member-image {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  display: block;
+  margin-bottom: 0.5rem;
+  border-radius: 0.3rem;
+}
+
+.image-caption {
+  font-size: 0.9rem;
+  color: #FFDAB9;
+  font-weight: bold;
+  margin: 0;
 }
 
 /* --- Testimonials Section --- */
@@ -534,40 +706,6 @@ main section {
   font-style: normal;
   text-align: right;
   display: block;
-}
-
-.testimonial-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(229, 115, 115, 0.7);
-  color: #fff;
-  border: none;
-  border-radius: 50%;
-  width: 2.8125rem;
-  height: 2.8125rem;
-  font-size: 1.125rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease, outline 0.3s ease;
-  z-index: 10;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.testimonial-arrow:hover,
-.testimonial-arrow:focus {
-  background-color: #E57373;
-  outline: 0.125rem solid #FFDAB9;
-  outline-offset: 0.125rem;
-}
-
-.testimonial-arrow.prev {
-  left: 0.9375rem;
-}
-
-.testimonial-arrow.next {
-  right: 0.9375rem;
 }
 
 /* --- Register Button --- */
@@ -974,6 +1112,16 @@ main section {
   nav ul li {
     margin-left: 1.25rem;
   }
+
+  .tribe-videos-grid {
+    gap: 1.5rem;
+  }
+
+  .tribe-videos-grid .video-container {
+    flex: 0 0 50%;
+    max-width: 50rem;
+    padding-bottom: 70%;
+  }
 }
 
 /* Small Devices (Landscape Phones, 768px and down) */
@@ -1044,6 +1192,33 @@ main section {
     grid-template-columns: 1fr;
   }
 
+  .tribe-videos-grid {
+    gap: 1rem;
+    overflow-x: auto; /* Enable horizontal scrolling for tribe videos */
+    padding-left: 1rem; /* Add some padding for scrollable content */
+    padding-right: 1rem;
+    justify-content: flex-start; /* Align items to the start for scrolling */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+
+  .tribe-videos-grid::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari, Opera */
+  }
+
+  .tribe-videos-grid .video-container {
+    flex: 0 0 70%; /* Adjust flex basis for smaller screens to show more */
+    max-width: 18rem; /* Set a max-width for individual video containers */
+    padding-bottom: 56.25%; /* Maintain aspect ratio */
+    transform: scale(0.9); /* Slightly scale down */
+    opacity: 0.7; /* Slightly reduce opacity */
+  }
+
+  .tribe-videos-grid .video-container.active {
+    transform: scale(0.95); /* Slightly less scale for active */
+    opacity: 1;
+  }
+
   .testimonial-card {
     flex: 0 0 80%;
     min-height: 14rem;
@@ -1053,6 +1228,11 @@ main section {
   .contact-details {
     flex-direction: column;
     gap: 1.25rem;
+  }
+
+  .video-caption {
+    font-size: 12px;
+    padding: 4px 8px;
   }
 
   #about-details, #timeline {
@@ -1085,6 +1265,16 @@ main section {
     flex: 0 0 5rem;
     font-size: 1.2rem;
   }
+
+  /* --- Join Tribe Section on Mobile --- */
+  #join-tribe {
+    padding: 3rem 0; /* Reduced padding for smaller screens */
+  }
+
+  #join-tribe h2 {
+    font-size: 1.6rem; /* Adjusted heading size */
+    margin-bottom: 1.5rem;
+  }
 }
 
 /* Extra Small Devices (Portrait Phones, 576px and down) */
@@ -1107,16 +1297,28 @@ main section {
     grid-template-columns: 1fr;
   }
 
+  .tribe-videos-grid .video-container {
+    flex: 0 0 80%; /* Adjust flex basis for smaller screens */
+    max-width: 18rem; /* Set a max-width */
+    padding-bottom: 56.25%;
+    transform: scale(0.9); /* Slightly scale down */
+    opacity: 0.7; /* Slightly reduce opacity */
+  }
+
+  .tribe-videos-grid .video-container.active {
+    transform: scale(0.95); /* Slightly less scale for active */
+    opacity: 1;
+  }
+
   .testimonial-card {
     flex: 0 0 90%;
     min-height: 11.25rem;
     padding: 2.5rem 1.25rem 1.875rem;
   }
 
-  .testimonial-avatar {
-    width: 5rem;
-    height: 5rem;
-    top: -2.25rem;
+  .contact-details {
+    flex-direction: column;
+    gap: 1.25rem;
   }
 
   .testimonial-arrow {
@@ -1146,5 +1348,19 @@ main section {
   .timeline-year {
     flex: 0 0 4.5rem;
     font-size: 1.1rem;
+  }
+
+  .video-caption {
+    font-size: 10px;
+    padding: 3px 6px;
+  }
+
+  /* --- Join Tribe Section on Extra Small Screens --- */
+  #join-tribe {
+    padding: 2rem 0; /* Further reduced padding */
+  }
+
+  #join-tribe h2 {
+    font-size: 1.4rem; /* Even smaller heading */
   }
 }
