@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Preene Dias | Vocal Studio</title>
+  <title>Preene Dias | The Lost Echo Studio</title>
   <link rel="stylesheet" href="style.css" />
 
   <!-- Google Fonts -->
@@ -24,7 +24,7 @@
   <header>
     <div class="container">
       <div class="logo">
-        <a href="#"><i class="fas fa-music"></i>Lost Echo Studio</a>
+        <a href="#"><i class="fas fa-music"></i>The Lost Echo Studio</a>
       </div>
       <button class="nav-toggle" aria-label="toggle navigation">
         <span class="hamburger"></span>
@@ -36,27 +36,27 @@
           <li><a href="#class-features">Classes</a></li>
           <li><a href="#testimonials">Testimonials</a></li>
           <li><a href="#contact">Contact</a></li>
-          <li><a href="https://forms.gle/yQ8vHAuSLSgFw6n37" target="_blank" class="nav-cta">Register Now</a></li>
+          <li><a href="https://forms.gle/yQ8vHAuSLSgFw6n37" target="_blank" class="nav-cta">Schedule your Demo</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
-    <!-- Hero Image Section -->
+  <!-- Hero Image Section -->
   <section id="hero">
     <div class="hero-text">
-      <h1 id="hero-title"></h1>
-      <p id="hero-subtitle"></p>
+      <h1 id="hero-title">The Lost Echo Studio</h1>
+      <p id="hero-subtitle">The Sound of Refinement</p>
     </div>
   </section>
 
   <main>
-        <!-- About Section -->
+    <!-- About Section -->
     <section id="about">
       <div class="container">
         <h2>My Vision</h2>
         <p class="about-summary">
-          Anybody can sing all it takes is the right mentor. For me as a child it was hard to find someone who could help me transform my voice. But through experience and training my voice grew to be what I am today. All it takes is patience and hard work. And this studio gives you the chance to rediscover the lost echo in you.
+          <strong><span class="highlight">Anyone can sing...</span></strong> it just takes the right mentor. For me as a child it was hard to find someone who could help me transform my voice. But through experience and training my voice grew to be what I am today. All it takes is patience and hard work. And this studio gives you the chance to rediscover <strong><span class="highlight">the lost echo</span></strong> in you.
         </p>
         <a href="about.html" class="about-link">Know More About Me</a>
       </div>
@@ -66,7 +66,7 @@
     <section id="gallery">
       <div class="container">
         <h2>Gallery</h2>
-        <h3 class="gallery-subtitle">Hear Preene Sing</h3>
+        <h3 class="gallery-subtitle">Teacher Showcase</h3>
         <div class="videos-grid">
           <div class="video-container">
             <img class="tribe-thumbnail" src="images/gallery1-thumbnail.png" alt="Thumbnail for Gallery Video 1" data-video-id="1s1lzprI4T3NtdVQ-eOG6idkfvMCYziHh" />
@@ -80,17 +80,31 @@
           </div>
         </div>
         <h3 class="gallery-subtitle">Join the Tribe</h3>
-        <div class="videos-grid">
-          <div class="video-container">
-            <img class="tribe-thumbnail" src="images/enika-thumbnail.png" alt="Thumbnail for Tribe Video 1" data-video-id="1wsYXgC7M1r-BLpGgwjU7K0uI2TNWu8Jd" />
-            <iframe class="tribe-video" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="display: none;"></iframe>
-            <p class="video-caption">Enika's Journey</p>
+        <div class="videos-slider">
+          <div class="tribe-videos-grid">
+            <div class="video-container">
+              <img class="tribe-thumbnail" src="images/enika-thumbnail.png" alt="Thumbnail for Tribe Video 1" data-video-id="1wsYXgC7M1r-BLpGgwjU7K0uI2TNWu8Jd" />
+              <iframe class="tribe-video" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="display: none;"></iframe>
+              <p class="video-caption">Enika</p>
+            </div>
+            <div class="video-container">
+              <img class="tribe-thumbnail" src="images/sarah-thumbnail.png" alt="Thumbnail for Tribe Video 2" data-video-id="1JHjJHleMzbsbrtk7fYcMINvFqp85Ts0C" />
+              <iframe class="tribe-video" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="display: none;"></iframe>
+              <p class="video-caption">Sarah</p>
+            </div>
+            <div class="video-container">
+              <img class="tribe-thumbnail" src="images/naman-thumbnail.png" alt="Thumbnail for Tribe Video 3" data-video-id="1ipixGYKHnkytK1g-QqiM8VGBy5mLKEq0" />
+              <iframe class="tribe-video" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="display: none;"></iframe>
+              <p class="video-caption">Naman</p>
+            </div>
+            <div class="video-container">
+              <img class="tribe-thumbnail" src="images/shriniketh-thumbnail.png" alt="Thumbnail for Tribe Video 4" data-video-id="1doruQMhQdrhLtSM6WetfijN6DY9nLGaT" />
+              <iframe class="tribe-video" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="display: none;"></iframe>
+              <p class="video-caption">Shriniketh</p>
+            </div>
           </div>
-          <div class="video-container">
-            <img class="tribe-thumbnail" src="images/sarah-thumbnail.png" alt="Thumbnail for Tribe Video 2" data-video-id="1JHjJHleMzbsbrtk7fYcMINvFqp85Ts0C" />
-            <iframe class="tribe-video" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="display: none;"></iframe>
-            <p class="video-caption">Sarah's Experience</p>
-          </div>
+          <button class="testimonial-arrow prev" aria-label="Previous video"><i class="fas fa-chevron-left"></i></button>
+          <button class="testimonial-arrow next" aria-label="Next video"><i class="fas fa-chevron-right"></i></button>
         </div>
       </div>
     </section>
@@ -101,24 +115,39 @@
         <h2>What I offer</h2>
         <div class="features-grid">
           <div class="feature-card">
+            <div class="feature-icon-wrapper">
+              <i class="fas fa-users feature-icon"></i>
+            </div>
             <h3>Learn Solo or Together</h3>
             <p>Learn at your own pace with private sessions or thrive in a collaborative group setting</p>
           </div>
           <div class="feature-card">
+            <div class="feature-icon-wrapper">
+              <i class="fas fa-file-alt feature-icon"></i>
+            </div>
             <h3>Music Exam Preparation</h3>
             <p>Ace your music exams with confidence. From technique to theory, the lessons cover every step to prepare you for TCL and other leading music exams so you’re stage and exam ready.</p>
           </div>
           <div class="feature-card">
+            <div class="feature-icon-wrapper">
+              <i class="fas fa-compact-disc feature-icon"></i>
+            </div>
             <h3>Dive into Diverse Genres</h3>
             <p>Explore a world of genres! Pop, jazz, gospel, rock, a cappella, and beyond. Master the style you love while discovering new musical horizons.</p>
           </div>
           <div class="feature-card">
-            <h3>Choir Arrangements & A Capella</h3>
-            <p>Master the art of harmony with specialized lessons in choir arrangements and a capella performance.</p>
+            <div class="feature-icon-wrapper">
+              <i class="fas fa-volume-up feature-icon"></i>
+            </div>
+            <h3>Choir Arrangements & Acapella</h3>
+            <p>Master the art of harmony with specialized lessons in choir arrangements or get arrangements done by us for your choir or acapella sets.</p>
           </div>
           <div class="feature-card">
+            <div class="feature-icon-wrapper">
+              <i class="fas fa-microphone feature-icon"></i>
+            </div>
             <h3>Events, Gigs & Private Shows</h3>
-            <p>Take your talent to the stage. Get opportunities and guidance for performing at events, gigs, and private shows.</p>
+            <p>Got an event that needs some rhythm? Book for your private gigs and let the music do the talking!</p>
           </div>
         </div>
       </div>
@@ -127,7 +156,7 @@
     <!-- Testimonials Section -->
     <section id="testimonials">
       <div class="container">
-        <h2>Testimonials</h2> 
+        <h2>Testimonials</h2>
         <div class="testimonial-slider">
           <div class="testimonial-grid">
             <!-- Testimonial 1 -->
@@ -251,29 +280,26 @@
 
     <!-- Contact Section -->
     <section id="contact">
-              <div class="contact-details">
-          <div class="contact-item">
-            <i class="fas fa-envelope"></i>
-            <a href="mailto:contact@preenedias.com">contact@preenedias.com</a>
-          </div>
-          <div class="contact-item">
-            <i class="fas fa-map-marker-alt"></i>
-            <span>Bangalore, India</span>
-          </div>
-          <div class="contact-item">
-            <i class="fab fa-instagram"></i>
-            <a href="https://www.instagram.com/preene.dias?igsh=d3NrbGxldmt0MDNu" target="_blank">@preene.dias</a>
-          </div>
-          <!-- Add this new block for Spotify -->
-          <div class="contact-item">
-            <i class="fab fa-spotify"></i>
-            <a href="https://open.spotify.com/artist/51HoH18vs8mRSV89BtvdGa?si=FTij2P_HSGybFwS14kobBw" target="_blank">Preene Dias</a>
-          </div>
-          <!-- End of new block -->
+      <div class="contact-details">
+        <div class="contact-item">
+          <i class="fas fa-envelope"></i>
+          <a href="mailto:contact@preenedias.com">contact@preenedias.com</a>
         </div>
-        <div class="register-now-box">
-          <a href="https://forms.gle/yQ8vHAuSLSgFw6n37" target="_blank" class="cta-button">Register Now</a>
+        <div class="contact-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>Bangalore, India</span>
         </div>
+        <div class="contact-item">
+          <i class="fab fa-instagram"></i>
+          <a href="https://www.instagram.com/preene.dias?igsh=d3NrbGxldmt0MDNu" target="_blank">@preene.dias</a>
+        </div>
+        <div class="contact-item">
+          <i class="fab fa-spotify"></i>
+          <a href="https://open.spotify.com/artist/51HoH18vs8mRSV89BtvdGa?si=FTij2P_HSGybFwS14kobBw" target="_blank">Preene Dias</a>
+        </div>
+      </div>
+      <div class="register-now-box">
+        <a href="https://forms.gle/yQ8vHAuSLSgFw6n37" target="_blank" class="cta-button">Schedule your Demo</a>
       </div>
     </section>
   </main>
@@ -281,8 +307,7 @@
   <footer>
     <div class="container">
       <p>© 2025 Preene Dias Vocal Studio. All Rights Reserved.</p>
-    </div>
-  </footer>
+    </footer>
 
   <!-- Navigation Script -->
   <script>
@@ -310,7 +335,7 @@
       const heroTitleEl = document.getElementById('hero-title');
       const heroSubtitleEl = document.getElementById('hero-subtitle');
 
-      const titleText = "Lost Echo Studio";
+      const titleText = "The Lost Echo Studio";
       const subtitleText = "The Sound of Refinement";
       const typingSpeed = 100;
       const pauseAfterAnimation = 2000;
@@ -341,105 +366,124 @@
           heroSubtitleEl.classList.remove('typing-cursor');
         }
       }
-      
+
       typewriterLoop();
     });
   </script>
 
-  <!-- Testimonial Slider Script -->
+  <!-- Slider Script for Testimonials and Tribe Videos -->
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-      const slider = document.querySelector('.testimonial-slider');
-      if (!slider) return;
+      // Generic Slider Function
+      function initializeSlider(sliderSelector, gridSelector, prevSelector, nextSelector, itemSelector) {
+        const slider = document.querySelector(sliderSelector);
+        if (!slider) return;
 
-      const grid = slider.querySelector('.testimonial-grid');
-      const prevButton = slider.querySelector('.testimonial-arrow.prev');
-      const nextButton = slider.querySelector('.testimonial-arrow.next');
-      let cards = Array.from(grid.children);
+        const grid = slider.querySelector(gridSelector);
+        const prevButton = slider.querySelector(prevSelector);
+        const nextButton = slider.querySelector(nextSelector);
+        let items = Array.from(grid.querySelectorAll(itemSelector));
 
-      if (cards.length <= 1) {
-        prevButton.style.display = 'none';
-        nextButton.style.display = 'none';
-        return;
-      }
-
-      const firstCardClone = cards[0].cloneNode(true);
-      const lastCardClone = cards[cards.length - 1].cloneNode(true);
-      firstCardClone.id = 'first-clone';
-      lastCardClone.id = 'last-clone';
-      grid.appendChild(firstCardClone);
-      grid.prepend(lastCardClone);
-
-      cards = Array.from(grid.children);
-
-      let currentIndex = 1;
-      let isTransitioning = false;
-      
-      function setSliderPosition(instant = false) {
-        if (instant) {
-          grid.style.transition = 'none';
-        } else {
-          grid.style.transition = 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)';
+        if (items.length <= 1) {
+          prevButton.style.display = 'none';
+          nextButton.style.display = 'none';
+          return;
         }
 
-        const currentCard = cards[currentIndex];
-        const sliderWidth = slider.offsetWidth;
-        const cardWidth = currentCard.offsetWidth;
-        const cardLeft = currentCard.offsetLeft;
+        const firstItemClone = items[0].cloneNode(true);
+        const lastItemClone = items[items.length - 1].cloneNode(true);
+        firstItemClone.id = 'first-clone';
+        lastItemClone.id = 'last-clone';
+        grid.appendChild(firstItemClone);
+        grid.prepend(lastItemClone);
 
-        const offsetToCenter = (sliderWidth - cardWidth) / 2;
-        const translateX = cardLeft - offsetToCenter;
+        items = Array.from(grid.querySelectorAll(itemSelector));
 
-        grid.style.transform = `translateX(-${translateX}px)`;
-        
-        cards.forEach(card => card.classList.remove('active'));
-        currentCard.classList.add('active');
+        let currentIndex = 1;
+        let isTransitioning = false;
 
-        if (instant) {
-          setTimeout(() => {
+        function setSliderPosition(instant = false) {
+          if (instant) {
+            grid.style.transition = 'none';
+          } else {
             grid.style.transition = 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)';
-          }, 50);
+          }
+
+          const currentItem = items[currentIndex];
+          const sliderWidth = slider.offsetWidth;
+          const itemWidth = currentItem.offsetWidth;
+          const itemLeft = currentItem.offsetLeft;
+
+          const offsetToCenter = (sliderWidth - itemWidth) / 2;
+          const translateX = itemLeft - offsetToCenter;
+
+          grid.style.transform = `translateX(-${translateX}px)`;
+
+          items.forEach(item => item.classList.remove('active'));
+          currentItem.classList.add('active');
+
+          if (instant) {
+            setTimeout(() => {
+              grid.style.transition = 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)';
+            }, 50);
+          }
         }
-      }
 
-      function handleNext() {
-        if (isTransitioning) return;
-        isTransitioning = true;
-        currentIndex++;
-        setSliderPosition();
-      }
-
-      function handlePrev() {
-        if (isTransitioning) return;
-        isTransitioning = true;
-        currentIndex--;
-        setSliderPosition();
-      }
-      
-      grid.addEventListener('transitionend', () => {
-        isTransitioning = false;
-        
-        if (cards[currentIndex].id === 'first-clone') {
-          currentIndex = 1;
-          setSliderPosition(true);
-        } else if (cards[currentIndex].id === 'last-clone') {
-          currentIndex = cards.length - 2;
-          setSliderPosition(true);
+        function handleNext() {
+          if (isTransitioning) return;
+          isTransitioning = true;
+          currentIndex++;
+          setSliderPosition();
         }
-      });
 
-      nextButton.addEventListener('click', handleNext);
-      prevButton.addEventListener('click', handlePrev);
+        function handlePrev() {
+          if (isTransitioning) return;
+          isTransitioning = true;
+          currentIndex--;
+          setSliderPosition();
+        }
 
-      setTimeout(() => {
-        setSliderPosition(true);
-      }, 100);
+        grid.addEventListener('transitionend', () => {
+          isTransitioning = false;
 
-      window.addEventListener('resize', () => setSliderPosition(true));
-    });
+          if (items[currentIndex].id === 'first-clone') {
+            currentIndex = 1;
+            setSliderPosition(true);
+          } else if (items[currentIndex].id === 'last-clone') {
+            currentIndex = items.length - 2;
+            setSliderPosition(true);
+          }
+        });
 
-    // Tribe Video Toggle with Thumbnails
-    document.addEventListener('DOMContentLoaded', () => {
+        nextButton.addEventListener('click', handleNext);
+        prevButton.addEventListener('click', handlePrev);
+
+        setTimeout(() => {
+          setSliderPosition(true);
+        }, 100);
+
+        window.addEventListener('resize', () => setSliderPosition(true));
+      }
+
+      // Initialize Testimonial Slider
+      initializeSlider(
+        '.testimonial-slider',
+        '.testimonial-grid',
+        '.testimonial-arrow.prev',
+        '.testimonial-arrow.next',
+        '.testimonial-card'
+      );
+
+      // Initialize Tribe Videos Slider
+      initializeSlider(
+        '.videos-slider',
+        '.tribe-videos-grid',
+        '.testimonial-arrow.prev',
+        '.testimonial-arrow.next',
+        '.video-container'
+      );
+
+      // Tribe Video Toggle with Thumbnails
       document.querySelectorAll('.tribe-thumbnail').forEach(thumbnail => {
         thumbnail.addEventListener('click', () => {
           const container = thumbnail.parentElement;
@@ -455,10 +499,8 @@
           videoIframe.style.display = 'block';
         });
       });
-    });
 
-    // Testimonial Read More Toggle
-    document.addEventListener('DOMContentLoaded', () => {
+      // Testimonial Read More Toggle
       document.querySelectorAll('.read-more').forEach(link => {
         const content = link.parentElement.querySelector('blockquote');
         const previewText = content.querySelector('.preview-text');
@@ -480,11 +522,13 @@
             fullText.style.display = 'none';
             link.textContent = 'Read More';
             link.setAttribute('data-expanded', 'false');
+            link.closest('.testimonial-card').classList.remove('expanded');
           } else {
             previewText.style.display = 'none';
             fullText.style.display = 'block';
             link.textContent = 'Read Less';
             link.setAttribute('data-expanded', 'true');
+            link.closest('.testimonial-card').classList.add('expanded');
           }
         });
       });
