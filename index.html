@@ -82,24 +82,20 @@
         <h3 class="gallery-subtitle">Join the Tribe</h3>
         <div class="videos-slider">
           <div class="tribe-videos-grid">
-            <div class="video-container">
+            <div class="circle-thumbnail-wrapper">
               <img class="tribe-thumbnail" src="images/enika-thumbnail.png" alt="Thumbnail for Tribe Video 1" data-video-id="1wsYXgC7M1r-BLpGgwjU7K0uI2TNWu8Jd" />
-              <iframe class="tribe-video" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="display: none;"></iframe>
               <p class="video-caption">Enika</p>
             </div>
-            <div class="video-container">
+            <div class="circle-thumbnail-wrapper">
               <img class="tribe-thumbnail" src="images/sarah-thumbnail.png" alt="Thumbnail for Tribe Video 2" data-video-id="1JHjJHleMzbsbrtk7fYcMINvFqp85Ts0C" />
-              <iframe class="tribe-video" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="display: none;"></iframe>
               <p class="video-caption">Sarah</p>
             </div>
-            <div class="video-container">
+            <div class="circle-thumbnail-wrapper">
               <img class="tribe-thumbnail" src="images/naman-thumbnail.png" alt="Thumbnail for Tribe Video 3" data-video-id="1ipixGYKHnkytK1g-QqiM8VGBy5mLKEq0" />
-              <iframe class="tribe-video" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="display: none;"></iframe>
               <p class="video-caption">Naman</p>
             </div>
-            <div class="video-container">
+            <div class="circle-thumbnail-wrapper">
               <img class="tribe-thumbnail" src="images/shriniketh-thumbnail.png" alt="Thumbnail for Tribe Video 4" data-video-id="1doruQMhQdrhLtSM6WetfijN6DY9nLGaT" />
-              <iframe class="tribe-video" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="display: none;"></iframe>
               <p class="video-caption">Shriniketh</p>
             </div>
           </div>
@@ -307,7 +303,16 @@
   <footer>
     <div class="container">
       <p>© 2025 Preene Dias Vocal Studio. All Rights Reserved.</p>
-    </footer>
+    </div>
+  </footer>
+
+  <!-- Video Popup -->
+  <div id="video-popup-overlay">
+    <div id="video-popup-content">
+      <iframe id="popup-video-player" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      <button id="close-popup-btn"><i class="fas fa-times"></i></button>
+    </div>
+  </div>
 
   <!-- Navigation Script -->
   <script>
@@ -375,7 +380,7 @@
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       // Generic Slider Function
-      function initializeSlider(sliderSelector, gridSelector, prevSelector, nextSelector, itemSelector) {
+      function initializeSlider(sliderSelector, gridSelector, prevSelector, nextSelector, itemSelector, isTribeSlider = false) {
         const slider = document.querySelector(sliderSelector);
         if (!slider) return;
 
@@ -390,19 +395,13 @@
           return;
         }
 
-        const firstItemClone = items[0].cloneNode(true);
-        const lastItemClone = items[items.length - 1].cloneNode(true);
-        firstItemClone.id = 'first-clone';
-        lastItemClone.id = 'last-clone';
-        grid.appendChild(firstItemClone);
-        grid.prepend(lastItemClone);
-
-        items = Array.from(grid.querySelectorAll(itemSelector));
-
-        let currentIndex = 1;
+        let currentIndex = 0; // Start at the first item
         let isTransitioning = false;
 
         function setSliderPosition(instant = false) {
+          if (isTransitioning && !instant) return;
+          isTransitioning = true;
+
           if (instant) {
             grid.style.transition = 'none';
           } else {
@@ -427,33 +426,60 @@
               grid.style.transition = 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)';
             }, 50);
           }
+
+          // Update button visibility for tribe slider
+          if (isTribeSlider) {
+            prevButton.style.display = currentIndex === 0 ? 'none' : 'flex';
+            nextButton.style.display = currentIndex === items.length - 1 ? 'none' : 'flex';
+          }
         }
 
         function handleNext() {
           if (isTransitioning) return;
-          isTransitioning = true;
-          currentIndex++;
-          setSliderPosition();
+          if (currentIndex < items.length - 1) {
+            currentIndex++;
+            setSliderPosition();
+          }
         }
 
         function handlePrev() {
           if (isTransitioning) return;
-          isTransitioning = true;
-          currentIndex--;
-          setSliderPosition();
+          if (currentIndex > 0) {
+            currentIndex--;
+            setSliderPosition();
+          }
         }
 
-        grid.addEventListener('transitionend', () => {
-          isTransitioning = false;
+        if (!isTribeSlider) {
+          // Apply cloning only for non-tribe sliders (e.g., testimonials)
+          const firstItemClone = items[0].cloneNode(true);
+          const lastItemClone = items[items.length - 1].cloneNode(true);
+          firstItemClone.id = 'first-clone';
+          lastItemClone.id = 'last-clone';
+          grid.appendChild(firstItemClone);
+          grid.prepend(lastItemClone);
+          items = Array.from(grid.querySelectorAll(itemSelector));
+          currentIndex = 1; // Adjust for cloned items
 
-          if (items[currentIndex].id === 'first-clone') {
-            currentIndex = 1;
-            setSliderPosition(true);
-          } else if (items[currentIndex].id === 'last-clone') {
-            currentIndex = items.length - 2;
-            setSliderPosition(true);
-          }
-        });
+          grid.addEventListener('transitionend', () => {
+            isTransitioning = false;
+
+            if (items[currentIndex].id === 'first-clone') {
+              currentIndex = 1;
+              setSliderPosition(true);
+            } else if (items[currentIndex].id === 'last-clone') {
+              currentIndex = items.length - 2;
+              setSliderPosition(true);
+            } else {
+              isTransitioning = false;
+            }
+          });
+        } else {
+          // For tribe slider, no cloning, just handle transition end
+          grid.addEventListener('transitionend', () => {
+            isTransitioning = false;
+          });
+        }
 
         nextButton.addEventListener('click', handleNext);
         prevButton.addEventListener('click', handlePrev);
@@ -471,33 +497,46 @@
         '.testimonial-grid',
         '.testimonial-arrow.prev',
         '.testimonial-arrow.next',
-        '.testimonial-card'
+        '.testimonial-card',
+        false
       );
 
-      // Initialize Tribe Videos Slider
+      // Initialize Tribe Videos Slider (without cloning)
       initializeSlider(
         '.videos-slider',
         '.tribe-videos-grid',
         '.testimonial-arrow.prev',
         '.testimonial-arrow.next',
-        '.video-container'
+        '.circle-thumbnail-wrapper',
+        true
       );
 
-      // Tribe Video Toggle with Thumbnails
-      document.querySelectorAll('.tribe-thumbnail').forEach(thumbnail => {
-        thumbnail.addEventListener('click', () => {
-          const container = thumbnail.parentElement;
-          const videoIframe = container.querySelector('.tribe-video');
+      // Video Popup Logic
+      const popupOverlay = document.getElementById('video-popup-overlay');
+      const popupVideoPlayer = document.getElementById('popup-video-player');
+      const closePopupBtn = document.getElementById('close-popup-btn');
+      const tribeThumbnails = document.querySelectorAll('.circle-thumbnail-wrapper .tribe-thumbnail');
+
+      tribeThumbnails.forEach(thumbnail => {
+        thumbnail.addEventListener('click', (e) => {
+          e.preventDefault();
           const videoId = thumbnail.dataset.videoId;
-          const caption = container.querySelector('.video-caption');
-
           const embedUrl = `https://drive.google.com/file/d/${videoId}/preview`;
-
-          thumbnail.style.display = 'none';
-          caption.style.display = 'none';
-          videoIframe.src = embedUrl;
-          videoIframe.style.display = 'block';
+          popupVideoPlayer.src = embedUrl;
+          popupOverlay.style.display = 'flex';
         });
+      });
+
+      // Close popup
+      closePopupBtn.addEventListener('click', () => {
+        popupVideoPlayer.src = "";
+        popupOverlay.style.display = 'none';
+      });
+
+      popupOverlay.addEventListener('click', (e) => {
+        if (e.target === popupOverlay) {
+          closePopupBtn.click();
+        }
       });
 
       // Testimonial Read More Toggle
