@@ -99,8 +99,6 @@
               <p class="video-caption">Shriniketh</p>
             </div>
           </div>
-          <button class="testimonial-arrow prev" aria-label="Previous video"><i class="fas fa-chevron-left"></i></button>
-          <button class="testimonial-arrow next" aria-label="Next video"><i class="fas fa-chevron-right"></i></button>
         </div>
       </div>
     </section>
@@ -364,23 +362,28 @@
           heroSubtitleEl.textContent = '';
 
           await typeLine(heroTitleEl, titleText);
+          await sleep(typingSpeed / 2);
           await typeLine(heroSubtitleEl, subtitleText);
 
           heroSubtitleEl.classList.add('typing-cursor');
           await sleep(pauseAfterAnimation);
           heroSubtitleEl.classList.remove('typing-cursor');
+          heroTitleEl.textContent = '';
+          heroSubtitleEl.textContent = '';
         }
       }
 
-      typewriterLoop();
+      if (heroTitleEl && heroSubtitleEl) {
+        typewriterLoop();
+      }
     });
   </script>
 
-  <!-- Slider Script for Testimonials and Tribe Videos -->
+  <!-- Slider Script for Testimonials -->
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-      // Generic Slider Function
-      function initializeSlider(sliderSelector, gridSelector, prevSelector, nextSelector, itemSelector, isTribeSlider = false) {
+      // Generic Slider Function (Used only for Testimonials)
+      function initializeSlider(sliderSelector, gridSelector, prevSelector, nextSelector, itemSelector) {
         const slider = document.querySelector(sliderSelector);
         if (!slider) return;
 
@@ -390,12 +393,12 @@
         let items = Array.from(grid.querySelectorAll(itemSelector));
 
         if (items.length <= 1) {
-          prevButton.style.display = 'none';
-          nextButton.style.display = 'none';
+          if (prevButton) prevButton.style.display = 'none';
+          if (nextButton) nextButton.style.display = 'none';
           return;
         }
 
-        let currentIndex = 0; // Start at the first item
+        let currentIndex = 0;
         let isTransitioning = false;
 
         function setSliderPosition(instant = false) {
@@ -418,19 +421,17 @@
 
           grid.style.transform = `translateX(-${translateX}px)`;
 
-          items.forEach(item => item.classList.remove('active'));
-          currentItem.classList.add('active');
+          items.forEach((item, index) => {
+            item.classList.remove('active');
+            if (index === currentIndex) {
+              item.classList.add('active');
+            }
+          });
 
           if (instant) {
             setTimeout(() => {
               grid.style.transition = 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)';
             }, 50);
-          }
-
-          // Update button visibility for tribe slider
-          if (isTribeSlider) {
-            prevButton.style.display = currentIndex === 0 ? 'none' : 'flex';
-            nextButton.style.display = currentIndex === items.length - 1 ? 'none' : 'flex';
           }
         }
 
@@ -450,39 +451,29 @@
           }
         }
 
-        if (!isTribeSlider) {
-          // Apply cloning only for non-tribe sliders (e.g., testimonials)
-          const firstItemClone = items[0].cloneNode(true);
-          const lastItemClone = items[items.length - 1].cloneNode(true);
-          firstItemClone.id = 'first-clone';
-          lastItemClone.id = 'last-clone';
-          grid.appendChild(firstItemClone);
-          grid.prepend(lastItemClone);
-          items = Array.from(grid.querySelectorAll(itemSelector));
-          currentIndex = 1; // Adjust for cloned items
+        const firstItemClone = items[0].cloneNode(true);
+        const lastItemClone = items[items.length - 1].cloneNode(true);
+        firstItemClone.id = 'first-clone';
+        lastItemClone.id = 'last-clone';
+        grid.appendChild(firstItemClone);
+        grid.prepend(lastItemClone);
+        items = Array.from(grid.querySelectorAll(itemSelector));
+        currentIndex = 1;
 
-          grid.addEventListener('transitionend', () => {
-            isTransitioning = false;
+        grid.addEventListener('transitionend', () => {
+          isTransitioning = false;
 
-            if (items[currentIndex].id === 'first-clone') {
-              currentIndex = 1;
-              setSliderPosition(true);
-            } else if (items[currentIndex].id === 'last-clone') {
-              currentIndex = items.length - 2;
-              setSliderPosition(true);
-            } else {
-              isTransitioning = false;
-            }
-          });
-        } else {
-          // For tribe slider, no cloning, just handle transition end
-          grid.addEventListener('transitionend', () => {
-            isTransitioning = false;
-          });
-        }
+          if (items[currentIndex].id === 'last-clone') {
+            currentIndex = items.length - 2;
+            setSliderPosition(true);
+          } else if (items[currentIndex].id === 'first-clone') {
+            currentIndex = 1;
+            setSliderPosition(true);
+          }
+        });
 
-        nextButton.addEventListener('click', handleNext);
-        prevButton.addEventListener('click', handlePrev);
+        if (prevButton) prevButton.addEventListener('click', handlePrev);
+        if (nextButton) nextButton.addEventListener('click', handleNext);
 
         setTimeout(() => {
           setSliderPosition(true);
@@ -497,25 +488,14 @@
         '.testimonial-grid',
         '.testimonial-arrow.prev',
         '.testimonial-arrow.next',
-        '.testimonial-card',
-        false
-      );
-
-      // Initialize Tribe Videos Slider (without cloning)
-      initializeSlider(
-        '.videos-slider',
-        '.tribe-videos-grid',
-        '.testimonial-arrow.prev',
-        '.testimonial-arrow.next',
-        '.circle-thumbnail-wrapper',
-        true
+        '.testimonial-card'
       );
 
       // Video Popup Logic
       const popupOverlay = document.getElementById('video-popup-overlay');
       const popupVideoPlayer = document.getElementById('popup-video-player');
       const closePopupBtn = document.getElementById('close-popup-btn');
-      const tribeThumbnails = document.querySelectorAll('.circle-thumbnail-wrapper .tribe-thumbnail');
+      const tribeThumbnails = document.querySelectorAll('.tribe-thumbnail[data-video-id]');
 
       tribeThumbnails.forEach(thumbnail => {
         thumbnail.addEventListener('click', (e) => {
@@ -524,13 +504,14 @@
           const embedUrl = `https://drive.google.com/file/d/${videoId}/preview`;
           popupVideoPlayer.src = embedUrl;
           popupOverlay.style.display = 'flex';
+          document.body.style.overflow = 'hidden';
         });
       });
 
-      // Close popup
       closePopupBtn.addEventListener('click', () => {
         popupVideoPlayer.src = "";
         popupOverlay.style.display = 'none';
+        document.body.style.overflow = '';
       });
 
       popupOverlay.addEventListener('click', (e) => {
@@ -546,10 +527,18 @@
         const fullText = content.querySelector('.full-text');
         const maxLength = 200;
 
-        if (fullText.textContent.length <= maxLength) {
-          link.style.display = 'none';
-        } else {
+        if (fullText && previewText && fullText.textContent.length > maxLength) {
           previewText.textContent = fullText.textContent.substring(0, maxLength) + "...";
+          link.style.display = 'block';
+        } else {
+          if (link.style.display !== 'none') {
+            link.style.display = 'none';
+          }
+          if (previewText && fullText) {
+            previewText.textContent = fullText.textContent;
+            previewText.style.display = 'block';
+            fullText.style.display = 'none';
+          }
         }
 
         link.addEventListener('click', (e) => {
@@ -557,14 +546,18 @@
           const isExpanded = link.getAttribute('data-expanded') === 'true';
 
           if (isExpanded) {
-            previewText.style.display = 'block';
-            fullText.style.display = 'none';
+            if (previewText && fullText) {
+              previewText.style.display = 'block';
+              fullText.style.display = 'none';
+            }
             link.textContent = 'Read More';
             link.setAttribute('data-expanded', 'false');
             link.closest('.testimonial-card').classList.remove('expanded');
           } else {
-            previewText.style.display = 'none';
-            fullText.style.display = 'block';
+            if (previewText && fullText) {
+              previewText.style.display = 'none';
+              fullText.style.display = 'block';
+            }
             link.textContent = 'Read Less';
             link.setAttribute('data-expanded', 'true');
             link.closest('.testimonial-card').classList.add('expanded');
