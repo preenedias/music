@@ -27,19 +27,19 @@
 
 .videos-slider {
   position: relative;
-  overflow: visible; /* Allow overflow for hover effect */
-  padding: 2rem 0; /* Increased padding to give more vertical space */
-  margin-bottom: 2rem; /* Added margin to prevent overlap with footer or other sections */
+  overflow: visible;
+  padding: 2rem 0;
+  margin-bottom: 2rem;
 }
 
 .tribe-videos-grid {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(10rem, 1fr));
+  gap: 1rem;
+  justify-items: center;
   align-items: center;
-  justify-content: center; /* Center align the videos */
-  gap: 0.25rem; /* Reduced gap between thumbnails */
-  padding: 0; /* Remove all padding to avoid constraints */
-  overflow: visible; /* Ensure no horizontal or vertical overflow clipping */
-  -webkit-overflow-scrolling: touch;
+  padding: 0;
+  overflow: visible;
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
@@ -58,23 +58,6 @@
   box-shadow: 0 0.625rem 1.25rem rgba(0, 0, 0, 0.2);
 }
 
-/* Base styles for all videos in the tribe slider */
-.tribe-videos-grid .video-container {
-  flex: 0 0 70%;
-  max-width: 25rem;
-  transform: scale(0.85);
-  opacity: 0.6;
-  transition: transform 0.5s ease, opacity 0.5s ease, flex-basis 0.5s ease, max-width 0.5s ease;
-}
-
-/* Active state for "Join the Tribe" videos */
-.tribe-videos-grid .video-container.active {
-  transform: scale(1);
-  opacity: 1;
-  flex-basis: 80%;
-  max-width: 30rem;
-}
-
 .tribe-video,
 .tribe-thumbnail {
   position: absolute;
@@ -86,7 +69,7 @@
 }
 
 .tribe-video {
-    display: none;
+  display: none;
 }
 
 .tribe-thumbnail {
@@ -113,13 +96,13 @@
   z-index: 10;
 }
 
-/* --- New Styles for Circle Thumbnails in "Join the Tribe" --- */
+/* --- Circle Thumbnails in "Join the Tribe" --- */
 .circle-thumbnail-wrapper {
   position: relative;
   width: 10rem;
   height: 10rem;
   border-radius: 50%;
-  overflow: visible; /* Ensure no cropping during hover */
+  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -127,36 +110,18 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   border: 3px solid #E57373;
   box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.3);
-  flex-shrink: 0;
-  position: relative; /* Proper positioning context */
-  margin: 0 auto; /* Center individually if needed */
 }
 
 .circle-thumbnail-wrapper:hover {
-  transform: scale(1.1); /* Reduced scale to minimize overlap */
+  transform: scale(1.1);
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.4);
-  z-index: 100; /* Higher z-index to avoid overlap */
-  position: relative; /* Ensure it stays in flow */
-}
-
-/* Adjust thumbnail behavior on hover */
-.circle-thumbnail-wrapper:hover .tribe-thumbnail {
-  transform: none; /* Remove any internal scaling to rely on wrapper */
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
 
 .circle-thumbnail-wrapper .tribe-thumbnail {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 50%;
-  display: block;
-  transition: opacity 0.3s ease; /* Smooth transition */
 }
 
 .circle-thumbnail-wrapper .video-caption {
@@ -172,40 +137,6 @@
   font-size: 12px;
   z-index: 10;
   border-radius: 3px;
-}
-
-/* --- Arrows Styling (Ensuring they are prominent for the slider) --- */
-/* Arrows for the Tribe Videos Slider - REMOVED AS PER REQUEST */
-.videos-slider .testimonial-arrow {
-    display: none !important;
-}
-
-/* --- Testimonials Section Arrows --- */
-.testimonial-slider .testimonial-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(229, 115, 115, 0.7);
-  color: #fff;
-  border: none;
-  border-radius: 50%;
-  width: 2.8125rem;
-  height: 2.8125rem;
-  font-size: 1.125rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease, outline 0.3s ease;
-  z-index: 20;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.testimonial-slider .testimonial-arrow.prev {
-  left: 1.5rem;
-}
-
-.testimonial-slider .testimonial-arrow.next {
-  right: 1.5rem;
 }
 
 /* --- Video Popup Styles --- */
@@ -495,7 +426,7 @@ nav .nav-cta::after {
 }
 
 #hero-subtitle {
-  font-family:'Playfair Display', serif;
+  font-family: 'Playfair Display', serif;
   font-size: 2.2rem;
   font-weight: 400;
   margin-top: 0.625rem;
@@ -646,38 +577,6 @@ main section {
   background-color: #333;
 }
 
-/* --- Gallery Section - New Styles for Images --- */
-.image-gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 1rem;
-  margin-top: 1.5rem;
-}
-
-.image-gallery-item {
-  text-align: center;
-  background: rgba(37, 37, 37, 0.8);
-  padding: 1rem;
-  border-radius: 0.5rem;
-  border: 1px solid #444;
-}
-
-.tribe-member-image {
-  width: 100%;
-  height: auto;
-  max-width: 100%;
-  display: block;
-  margin-bottom: 0.5rem;
-  border-radius: 0.3rem;
-}
-
-.image-caption {
-  font-size: 0.9rem;
-  color: #FFDAB9;
-  font-weight: bold;
-  margin: 0;
-}
-
 /* --- Testimonials Section --- */
 #testimonials {
   background: linear-gradient(rgba(26, 26, 26, 0.85), rgba(26, 26, 26, 0.85)), url('images/music.jpg') no-repeat center center;
@@ -799,6 +698,34 @@ main section {
   display: block;
 }
 
+/* --- Arrows Styling --- */
+.testimonial-slider .testimonial-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(229, 115, 115, 0.7);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 2.8125rem;
+  height: 2.8125rem;
+  font-size: 1.125rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, outline 0.3s ease;
+  z-index: 20;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.testimonial-slider .testimonial-arrow.prev {
+  left: 1.5rem;
+}
+
+.testimonial-slider .testimonial-arrow.next {
+  right: 1.5rem;
+}
+
 /* --- Register Button --- */
 .cta-button {
   display: inline-block;
@@ -833,14 +760,6 @@ main section {
 #contact h2 {
   color: #443a30;
   margin-bottom: 0.9375rem;
-}
-
-#contact .contact-intro p {
-  max-width: 37.5rem;
-  color: #645140;
-  margin: 0 auto 1.875rem auto;
-  font-size: 1.1rem;
-  line-height: 1.8;
 }
 
 .contact-details {
@@ -929,324 +848,92 @@ main section {
   opacity: 0;
 }
 
-/* --- About Hero Section (About Page) --- */
-#about-hero {
-  position: relative;
-  height: 60vh;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: #fff;
-  background: url('images/about-hero.jpg') no-repeat center center/cover;
-  background-color: #1a1a1a;
-}
-
-#about-hero::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.6);
-  z-index: 1;
-}
-
-.about-hero-text {
-  position: relative;
-  z-index: 2;
-  padding: 1.25rem;
-}
-
-.about-hero-text h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: 3.5rem;
-  color: #FFDAB9;
-  font-weight: 700;
-  margin: 0;
-  text-shadow: 0.125rem 0.125rem 0.5rem rgba(0, 0, 0, 0.7);
-}
-
-.about-hero-text p {
-  font-family: 'Inter', sans-serif;
-  font-size: 1.3rem;
-  font-weight: 400;
-  margin-top: 0.625rem;
-  letter-spacing: 0.0625rem;
-  text-shadow: 0.0625rem 0.0625rem 0.25rem rgba(0, 0, 0, 0.7);
-}
-
-/* --- About Details Section (About Page) --- */
-#about-details {
-  background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
-  padding: 6.25rem 0;
-}
-
-#about-details h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: 3.5rem;
-  color: #FFDAB9;
-  margin-bottom: 3rem;
-  text-align: center;
-}
-
-.about-hero {
-  text-align: center;
-  margin-bottom: 3rem;
-}
-
-.about-hero .about-intro {
-  font-size: 1.2rem;
-  color: #F5F5F5;
-  max-width: 50rem;
-  margin: 0 auto;
-  line-height: 1.8;
-}
-
-.about-section-content {
-  display: flex;
-  flex-direction: column;
-  gap: 4rem;
-  max-width: 75rem;
-  margin: 0 auto;
-}
-
-.about-content-item {
-  display: flex;
-  align-items: center;
-  gap: 2.5rem;
-  max-width: 65rem;
-  margin: 0 auto;
-}
-
-.about-content-item:nth-child(even) {
-  flex-direction: row-reverse;
-}
-
-.about-image-container {
-  flex-shrink: 0;
-  width: 25rem;
-  background: #fff;
-  padding: 1rem;
-  transform: rotate(3deg);
-  box-shadow: 0.3rem 0.3rem 1rem rgba(0, 0, 0, 0.4), 0 0.1rem 0.2rem rgba(0, 0, 0, 0.2);
-  transition: transform 0.4s ease-out, box-shadow 0.4s ease-out;
-}
-
-.about-image-container:hover {
-  transform: scale(1.05) rotate(0deg);
-  box-shadow: 0.7rem 0.7rem 1.5rem rgba(0, 0, 0, 0.5), 0 0.2rem 0.4rem rgba(0, 0, 0, 0.3);
-}
-
-.about-image-container img {
-  width: 100%;
-  height: auto;
-  display: block;
-  object-fit: cover;
-}
-
-.about-text {
-  flex-grow: 1;
-  min-width: 20rem;
-}
-
-.about-text h3 {
-  font-family: 'Playfair Display', serif;
-  font-size: 2.2rem;
-  color: #FFDAB9;
-  margin-bottom: 1rem;
-  letter-spacing: 0.5px;
-}
-
-.about-text p {
-  font-size: 1.1rem;
-  color: #F5F5F5;
-  line-height: 1.8;
-  margin-bottom: 1.2rem;
-}
-
-.about-text p:last-child {
-  margin-bottom: 0;
-}
-
-/* --- Timeline Section (About Page) --- */
-#timeline {
-  background: #1a1a1a;
-  padding: 6.25rem 0;
-}
-
-.timeline-container {
-  max-width: 75rem;
-  margin: 0 auto;
-  position: relative;
-}
-
-.timeline-line {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 4px;
-  height: 100%;
-  background: #E57373;
-  z-index: 1;
-}
-
-.timeline-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 3rem;
-  position: relative;
-  z-index: 2;
-}
-
-.timeline-item {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-  max-width: 65rem;
-  margin: 0 auto;
-}
-
-.timeline-item:nth-child(even) {
-  flex-direction: row-reverse;
-}
-
-.timeline-content {
-  flex: 1;
-  background: rgba(37, 37, 37, 0.8);
-  padding: 1.5rem;
-  border-radius: 0.5rem;
-  border: 1px solid #444;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.timeline-content:hover {
-  transform: translateY(-0.2rem);
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
-}
-
-.timeline-content h3 {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.8rem;
-  color: #FFDAB9;
-  margin-bottom: 0.5rem;
-}
-
-.timeline-content p {
-  font-size: 1rem;
-  color: #F5F5F5;
-  line-height: 1.6;
-}
-
-.timeline-year {
-  flex: 0 0 8rem;
-  text-align: center;
-  font-family: 'Playfair Display', serif;
-  font-size: 1.5rem;
-  color: #E57373;
-  background: #1a1a1a;
-  padding: 0.5rem;
-  border-radius: 50%;
-  border: 2px solid #E57373;
-  z-index: 3;
-}
-
-/* --- Join Tribe Section --- */
-#join-tribe {
-  background: linear-gradient(rgba(26, 26, 26, 0.85), rgba(26, 26, 26, 0.85)), url('images/music.jpg') no-repeat center center;
-  background-size: cover;
-  background-attachment: fixed;
-  padding: 4rem 0;
-  text-align: center;
-}
-
-#join-tribe h2 {
-  margin-bottom: 2rem;
-}
-
 /* --- Responsive Adjustments for Tribe Videos --- */
-@media (max-width: 992px) {
-  .tribe-videos-grid .video-container,
-  .tribe-videos-grid .circle-thumbnail-wrapper {
-    flex: 0 0 calc(50% - 1.25rem);
-    max-width: calc(50% - 1.25rem);
+@media (max-width: 768px) {
+  .tribe-videos-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 70vh;
+    padding: 1rem 0;
+  }
+
+  .circle-thumbnail-wrapper {
+    width: 12rem;
+    height: 12rem;
     transform: none;
     opacity: 1;
   }
-}
 
-@media (max-width: 768px) {
-  .tribe-videos-grid {
-    gap: 0.25rem; /* Reduced gap for mobile */
-    overflow-x: auto;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    justify-content: flex-start;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+  .videos-slider .testimonial-arrow {
+    display: none;
   }
-  .tribe-videos-grid .video-container,
-  .tribe-videos-grid .circle-thumbnail-wrapper {
-    flex: 0 0 calc(70% - 1rem);
-    max-width: calc(70% - 1rem);
+
+  /* Hero Section Adjustments for Mobile */
+  #hero {
+    height: 60vh;
+  }
+
+  .hero-text {
+    padding: 0.5rem;
+  }
+
+  #hero-title {
+    font-size: 1.8rem;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    margin-bottom: 0.5rem;
+  }
+
+  #hero-subtitle {
+    font-size: 1.2rem;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    margin-top: 0;
   }
 }
 
 @media (max-width: 576px) {
   .tribe-videos-grid {
-    flex-direction: column; /* Stack vertically */
-    gap: 0.5rem; /* Adjust vertical gap */
+    gap: 1rem;
   }
-  .tribe-videos-grid .video-container,
-  .tribe-videos-grid .circle-thumbnail-wrapper {
-    flex: 0 0 90%; /* Full width per item */
-    max-width: 90%;
-    margin: 0 auto; /* Center each item */
+
+  .circle-thumbnail-wrapper {
+    width: 10rem;
+    height: 10rem;
+  }
+
+  .video-caption {
+    font-size: 12px;
+    padding: 4px 8px;
+  }
+
+  /* Hero Section Adjustments for Smaller Phones */
+  #hero-title {
+    font-size: 1.6rem;
+  }
+
+  #hero-subtitle {
+    font-size: 1.1rem;
   }
 }
 
 /* --- General Responsive Adjustments --- */
-
-/* Medium Devices (Tablets, 992px and down) */
 @media (max-width: 992px) {
-  .about-content-item, .timeline-item {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .about-content-item:nth-child(even), .timeline-item:nth-child(even) {
-    flex-direction: column;
-  }
-
-  .about-image-container {
-    width: 22rem;
-    transform: rotate(0deg);
-    margin-bottom: 1.5rem;
-  }
-
-  .about-image-container:hover {
-    transform: scale(1.05) rotate(0deg);
-  }
-
-  .timeline-line {
-    left: 2rem;
-  }
-
-  .timeline-year {
-    flex: 0 0 6rem;
-    font-size: 1.3rem;
-  }
-
-  nav ul li {
-    margin-left: 1.25rem;
+  .videos-grid {
+    grid-template-columns: 1fr;
   }
 }
 
-/* Small Devices (Landscape Phones, 768px and down) */
 @media (max-width: 768px) {
   body { font-size: 0.9375rem; }
   h1 { font-size: 2.5rem; }
@@ -1258,16 +945,12 @@ main section {
     letter-spacing: 0.03rem;
   }
 
-  #hero, #about-hero { height: 70vh; }
-  .hero-text h1, .about-hero-text h1 { font-size: 2.5rem; }
-  .hero-text p, .about-hero-text p { font-size: 1.2rem; }
-
-  #about, #gallery, #class-features, #testimonials, #about-details, #timeline, #join-tribe {
+  #about, #gallery, #class-features, #testimonials {
     background-attachment: scroll;
     background-position: center center;
   }
 
-  header, .feature-card, .testimonial-card, .timeline-content {
+  header, .feature-card, .testimonial-card {
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
   }
@@ -1310,10 +993,6 @@ main section {
     font-size: 1.2rem;
   }
 
-  .videos-grid {
-    grid-template-columns: 1fr;
-  }
-
   .testimonial-card {
     flex: 0 0 80%;
     min-height: 14rem;
@@ -1324,55 +1003,8 @@ main section {
     flex-direction: column;
     gap: 1.25rem;
   }
-
-  .video-caption {
-    font-size: 12px;
-    padding: 4px 8px;
-  }
-
-  #about-details, #timeline {
-    padding: 4rem 0;
-  }
-
-  .about-image-container {
-    width: 18rem;
-  }
-
-  #about-details h2, #timeline h2 {
-    font-size: 2.8rem;
-    margin-bottom: 2rem;
-  }
-
-  .about-text h3, .timeline-content h3 {
-    font-size: 1.9rem;
-  }
-
-  .about-text p, .timeline-content p {
-    font-size: 1rem;
-    margin-bottom: 1rem;
-  }
-
-  .timeline-line {
-    left: 1.5rem;
-  }
-
-  .timeline-year {
-    flex: 0 0 5rem;
-    font-size: 1.2rem;
-  }
-
-  /* --- Join Tribe Section on Mobile --- */
-  #join-tribe {
-    padding: 3rem 0;
-  }
-
-  #join-tribe h2 {
-    font-size: 1.6rem;
-    margin-bottom: 1.5rem;
-  }
 }
 
-/* Extra Small Devices (Portrait Phones, 576px and down) */
 @media (max-width: 576px) {
   body { font-size: 0.9375rem; }
   h1 { font-size: 2.2rem; }
@@ -1383,10 +1015,6 @@ main section {
     transform: scale(1.03);
     letter-spacing: 0.03rem;
   }
-
-  #hero, #about-hero { height: 60vh; }
-  .hero-text h1, .about-hero-text h1 { font-size: 2rem; }
-  .hero-text p, .about-hero-text p { font-size: 1.1rem; }
 
   .features-grid {
     grid-template-columns: 1fr;
@@ -1421,28 +1049,5 @@ main section {
     padding: 0.625rem 1.5rem;
     font-size: 0.9rem;
     border-radius: 0.3125rem;
-  }
-
-  .about-image-container {
-    width: 16rem;
-  }
-
-  .timeline-year {
-    flex: 0 0 4.5rem;
-    font-size: 1.1rem;
-  }
-
-  .video-caption {
-    font-size: 10px;
-    padding: 3px 6px;
-  }
-
-  /* --- Join Tribe Section on Extra Small Screens --- */
-  #join-tribe {
-    padding: 2rem 0;
-  }
-
-  #join-tribe h2 {
-    font-size: 1.4rem;
   }
 }
