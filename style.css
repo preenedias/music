@@ -203,8 +203,8 @@
 
 #close-popup-btn {
   position: absolute;
-  top: -15px;
-  right: -15px;
+  top: 10px; /* Position inside the top-right corner */
+  right: 10px; /* Position inside the top-right corner */
   background-color: #E57373;
   color: #fff;
   border: none;
@@ -236,8 +236,8 @@
   }
 
   #close-popup-btn {
-    top: -12px;
-    right: -12px;
+    top: 8px; /* Adjusted for smaller screens */
+    right: 8px;
     width: 30px;
     height: 30px;
     font-size: 16px;
@@ -267,8 +267,8 @@
   }
 
   #close-popup-btn {
-    top: -10px;
-    right: -10px;
+    top: 6px; /* Adjusted for very small screens */
+    right: 6px;
     width: 25px;
     height: 25px;
     font-size: 14px;
