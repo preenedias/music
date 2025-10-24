@@ -110,7 +110,8 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   border: 3px solid #E57373;
   box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.3);
-  aspect-ratio: 1 / 1; /* Ensure perfect circle */
+  aspect-ratio: 1 / 1;
+  z-index: 10;
 }
 
 .circle-thumbnail-wrapper:hover {
@@ -123,7 +124,7 @@
   height: 100%;
   object-fit: cover;
   border-radius: 50%;
-  aspect-ratio: 1 / 1; /* Ensure image stays circular */
+  aspect-ratio: 1 / 1;
 }
 
 .circle-thumbnail-wrapper .video-caption {
@@ -142,31 +143,38 @@
 }
 
 /* --- Video Popup Styles --- */
+.videos-slider {
+  position: relative; /* Ensure the slider is the positioning context for the popup */
+}
+
 #video-popup-overlay {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.8);
   display: none;
   justify-content: center;
   align-items: center;
   z-index: 2000;
-  backdrop-filter: blur(5px);
-  overflow: hidden; /* Prevent scrolling */
-  box-sizing: border-box;
+  pointer-events: none;
 }
 
 #video-popup-content {
-  position: relative;
-  width: 90vw; /* Use viewport width for responsiveness */
-  max-width: 600px; /* Cap max-width for larger phones */
-  height: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 600px;
   padding-top: 56.25%; /* Maintain 16:9 aspect ratio */
   background-color: #1a1a1a;
   border-radius: 8px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+  pointer-events: auto;
+  z-index: 2100;
 }
 
 #video-popup-content iframe {
@@ -176,6 +184,7 @@
   width: 100%;
   height: 100%;
   border: none;
+  border-radius: 8px;
 }
 
 #close-popup-btn {
@@ -194,11 +203,66 @@
   justify-content: center;
   align-items: center;
   transition: background-color 0.3s ease;
-  z-index: 2100; /* Ensure above iframe */
+  z-index: 2200;
+  pointer-events: auto;
 }
 
 #close-popup-btn:hover {
   background-color: #d85c5c;
+}
+
+@media (max-width: 768px) {
+  #video-popup-overlay {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: none; /* Remove blur to prevent blurry screen */
+    z-index: 2000;
+    pointer-events: auto;
+  }
+
+  #video-popup-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 300px;
+    padding-top: 50.625%; /* Maintain 16:9 aspect ratio (90% * 9/16) */
+    border-radius: 0.5rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    background-color: #1a1a1a;
+    z-index: 2100;
+    pointer-events: auto;
+  }
+
+  #close-popup-btn {
+    top: -12px;
+    right: -12px;
+    width: 30px;
+    height: 30px;
+    font-size: 16px;
+    z-index: 2200;
+    pointer-events: auto;
+  }
+}
+
+@media (max-width: 576px) {
+  #video-popup-content {
+    width: 80%;
+    max-width: 250px;
+    padding-top: 45%; /* Maintain 16:9 aspect ratio (80% * 9/16) */
+    border-radius: 0.375rem;
+  }
+
+  #close-popup-btn {
+    top: -10px;
+    right: -10px;
+    width: 25px;
+    height: 25px;
+    font-size: 14px;
+  }
 }
 
 /* --- General Styling --- */
@@ -413,6 +477,7 @@ nav .nav-cta::after {
   right: 0;
   bottom: 0;
   background: rgba(0, 0, 0, 0.5);
+  filter: blur(10px); /* Apply blur to the background overlay */
   z-index: 1;
 }
 
@@ -442,7 +507,7 @@ nav .nav-cta::after {
   text-shadow: 0.03em 0.03em 0.1em rgba(0, 0, 0, 0.6);
   display: block;
   letter-spacing: 0.03em;
-  color: #E57373;
+  color: #FFDAB9;
 }
 
 /* --- Blinking Cursor for Typewriter --- */
@@ -875,15 +940,16 @@ main section {
     height: 10rem;
     transform: none;
     opacity: 1;
-    flex-shrink: 0; /* Prevent squashing */
-    aspect-ratio: 1 / 1; /* Ensure perfect circle */
+    flex-shrink: 0;
+    aspect-ratio: 1 / 1;
+    z-index: 10;
   }
 
   .circle-thumbnail-wrapper .tribe-thumbnail {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    aspect-ratio: 1 / 1; /* Ensure image stays circular */
+    aspect-ratio: 1 / 1;
   }
 
   .videos-slider .testimonial-arrow {
@@ -893,6 +959,10 @@ main section {
   /* Hero Section Adjustments for Mobile */
   #hero {
     height: 60vh;
+  }
+
+  #hero::before {
+    filter: blur(3px); /* Reduce blur slightly for smaller screens */
   }
 
   .hero-text {
@@ -917,39 +987,6 @@ main section {
     text-overflow: ellipsis;
     max-width: 100%;
     margin-top: 0;
-  }
-
-  /* Video Popup Adjustments for Mobile */
-  #video-popup-overlay {
-    overflow: hidden;
-    justify-content: center;
-    align-items: center;
-  }
-
-  #video-popup-content {
-    width: calc(100vw - 20px); /* Slightly smaller than viewport */
-    max-width: calc(100vw - 20px);
-    height: 0;
-    padding-top: 56.25%; /* Maintain 16:9 aspect ratio */
-    border-radius: 8px;
-  }
-
-  #video-popup-content iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
-  }
-
-  #close-popup-btn {
-    top: -12px;
-    right: -12px;
-    width: 30px;
-    height: 30px;
-    font-size: 16px;
-    z-index: 2100;
   }
 }
 
@@ -984,21 +1021,8 @@ main section {
     font-size: 1.1rem;
   }
 
-  /* Video Popup Adjustments for Smaller Phones */
-  #video-popup-content {
-    width: calc(100vw - 16px); /* Further reduce for smaller screens */
-    max-width: calc(100vw - 16px);
-    height: 0;
-    padding-top: 56.25%; /* Maintain 16:9 aspect ratio */
-    border-radius: 8px;
-  }
-
-  #close-popup-btn {
-    top: -10px;
-    right: -10px;
-    width: 25px;
-    height: 25px;
-    font-size: 14px;
+  #hero::before {
+    filter: blur(2px); /* Further reduce blur for very small screens */
   }
 }
 
