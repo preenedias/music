@@ -102,7 +102,7 @@
           <div id="video-popup-overlay">
             <div id="video-popup-content">
               <iframe id="popup-video-player" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-              <button id="close-popup-btn" aria-label="Close video"><i class="fas fa-times"></i> Close</button>
+              <button id="close-popup-btn" aria-label="Close video"><i class="fas fa-times"></i></button>
             </div>
           </div>
         </div>
@@ -489,6 +489,8 @@
         '.testimonial-card'
       );
 
+      // ... (previous JavaScript code for other functions) ...
+
       // Video Popup Logic
       const popupOverlay = document.getElementById('video-popup-overlay');
       const popupVideoContent = document.getElementById('video-popup-content');
@@ -497,39 +499,37 @@
       const tribeThumbnails = document.querySelectorAll('.tribe-thumbnail[data-video-id]');
 
       function openPopup(videoId) {
-        if (!videoId) return;
+        if (!videoId) {
+          console.error("No video ID provided.");
+          return;
+        }
 
         const embedUrl = 'https://drive.google.com/file/d/' + videoId + '/preview';
         
-        // Add the 'visible' class to trigger CSS transitions
         popupOverlay.classList.add('visible');
-        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        document.body.style.overflow = 'hidden';
 
-        // Set iframe src after a short delay to ensure popup is visible and can load
         setTimeout(() => {
-          if (popupOverlay.classList.contains('visible')) { // Check if popup is still intended to be open
+          if (popupOverlay.classList.contains('visible')) { 
             popupVideoPlayer.src = embedUrl;
           }
-        }, 300); // Delay should match the CSS transition duration for overlay
+        }, 300);
       }
 
       function closePopup() {
-        // Stop video playback by clearing the src
         popupVideoPlayer.src = '';
-        
-        // Remove the 'visible' class to trigger CSS transitions for closing
         popupOverlay.classList.remove('visible');
-        document.body.style.overflow = ''; // Allow background scrolling again
+        document.body.style.overflow = '';
       }
 
       tribeThumbnails.forEach(thumbnail => {
         thumbnail.addEventListener('click', (e) => {
-          e.preventDefault(); // Prevent default link behavior
+          e.preventDefault();
           const videoId = thumbnail.dataset.videoId;
-          if (videoId) { // Only open if videoId is present
+          if (videoId) {
             openPopup(videoId);
           } else {
-            console.error("Video ID not found for this thumbnail.");
+            console.error("Data-video-id attribute is missing or empty for this thumbnail.");
           }
         });
       });
@@ -537,11 +537,12 @@
       closePopupBtn.addEventListener('click', closePopup);
 
       popupOverlay.addEventListener('click', (e) => {
-        // Close popup if the click is directly on the overlay background
         if (e.target === popupOverlay) {
           closePopup();
         }
       });
+
+// ... (rest of your JavaScript) ...
 
       // Testimonial Read More Toggle
       document.querySelectorAll('.read-more').forEach(link => {
@@ -549,20 +550,18 @@
         const previewText = content.querySelector('.preview-text');
         const fullText = content.querySelector('.full-text');
         
-        // Check if full text exists and needs truncation
         if (fullText && previewText) {
-            const maxLength = 200; // Approximate length for preview
+            const maxLength = 200;
             if (fullText.textContent.length > maxLength) {
                 previewText.textContent = fullText.textContent.substring(0, maxLength) + "...";
-                link.style.display = 'block'; // Show 'Read More'
+                link.style.display = 'block';
             } else {
-                previewText.textContent = fullText.textContent; // Show full text if short
+                previewText.textContent = fullText.textContent;
                 previewText.style.display = 'block';
                 fullText.style.display = 'none';
-                link.style.display = 'none'; // Hide 'Read More' if not needed
+                link.style.display = 'none';
             }
         } else {
-             // If either preview or full text is missing, hide the link
             link.style.display = 'none';
         }
 
@@ -571,14 +570,12 @@
           const isExpanded = link.getAttribute('data-expanded') === 'true';
 
           if (isExpanded) {
-            // Collapse
             previewText.style.display = 'block';
             fullText.style.display = 'none';
             link.textContent = 'Read More';
             link.setAttribute('data-expanded', 'false');
             link.closest('.testimonial-card').classList.remove('expanded');
           } else {
-            // Expand
             previewText.style.display = 'none';
             fullText.style.display = 'block';
             link.textContent = 'Read Less';
