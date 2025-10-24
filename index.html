@@ -500,41 +500,44 @@
         if (!videoId) return;
 
         const embedUrl = 'https://drive.google.com/file/d/' + videoId + '/preview';
-        popupOverlay.style.display = 'flex';
-        popupOverlay.style.pointerEvents = 'auto';
-        popupVideoContent.style.display = 'block';
-        popupVideoPlayer.src = ''; // Reset src to prevent loading old video
-        document.body.style.overflow = 'hidden';
-        closePopupBtn.style.display = 'block';
+        
+        // Add the 'visible' class to trigger CSS transitions
+        popupOverlay.classList.add('visible');
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
 
-        // Set iframe src after a short delay to ensure popup is visible
+        // Set iframe src after a short delay to ensure popup is visible and can load
         setTimeout(() => {
-          if (popupOverlay.style.display === 'flex') {
+          if (popupOverlay.classList.contains('visible')) { // Check if popup is still intended to be open
             popupVideoPlayer.src = embedUrl;
           }
-        }, 100); // Reduced delay for faster loading
+        }, 300); // Delay should match the CSS transition duration for overlay
       }
 
       function closePopup() {
+        // Stop video playback by clearing the src
         popupVideoPlayer.src = '';
-        popupOverlay.style.display = 'none';
-        popupOverlay.style.pointerEvents = 'none';
-        popupVideoContent.style.display = 'none';
-        document.body.style.overflow = '';
-        closePopupBtn.style.display = 'none';
+        
+        // Remove the 'visible' class to trigger CSS transitions for closing
+        popupOverlay.classList.remove('visible');
+        document.body.style.overflow = ''; // Allow background scrolling again
       }
 
       tribeThumbnails.forEach(thumbnail => {
         thumbnail.addEventListener('click', (e) => {
-          e.preventDefault();
+          e.preventDefault(); // Prevent default link behavior
           const videoId = thumbnail.dataset.videoId;
-          openPopup(videoId);
+          if (videoId) { // Only open if videoId is present
+            openPopup(videoId);
+          } else {
+            console.error("Video ID not found for this thumbnail.");
+          }
         });
       });
 
       closePopupBtn.addEventListener('click', closePopup);
 
       popupOverlay.addEventListener('click', (e) => {
+        // Close popup if the click is directly on the overlay background
         if (e.target === popupOverlay) {
           closePopup();
         }
@@ -545,20 +548,22 @@
         const content = link.parentElement.querySelector('blockquote');
         const previewText = content.querySelector('.preview-text');
         const fullText = content.querySelector('.full-text');
-        const maxLength = 200;
-
-        if (fullText && previewText && fullText.textContent.length > maxLength) {
-          previewText.textContent = fullText.textContent.substring(0, maxLength) + "...";
-          link.style.display = 'block';
+        
+        // Check if full text exists and needs truncation
+        if (fullText && previewText) {
+            const maxLength = 200; // Approximate length for preview
+            if (fullText.textContent.length > maxLength) {
+                previewText.textContent = fullText.textContent.substring(0, maxLength) + "...";
+                link.style.display = 'block'; // Show 'Read More'
+            } else {
+                previewText.textContent = fullText.textContent; // Show full text if short
+                previewText.style.display = 'block';
+                fullText.style.display = 'none';
+                link.style.display = 'none'; // Hide 'Read More' if not needed
+            }
         } else {
-          if (link.style.display !== 'none') {
+             // If either preview or full text is missing, hide the link
             link.style.display = 'none';
-          }
-          if (previewText && fullText) {
-            previewText.textContent = fullText.textContent;
-            previewText.style.display = 'block';
-            fullText.style.display = 'none';
-          }
         }
 
         link.addEventListener('click', (e) => {
@@ -566,12 +571,14 @@
           const isExpanded = link.getAttribute('data-expanded') === 'true';
 
           if (isExpanded) {
+            // Collapse
             previewText.style.display = 'block';
             fullText.style.display = 'none';
             link.textContent = 'Read More';
             link.setAttribute('data-expanded', 'false');
             link.closest('.testimonial-card').classList.remove('expanded');
           } else {
+            // Expand
             previewText.style.display = 'none';
             fullText.style.display = 'block';
             link.textContent = 'Read Less';
