@@ -65,8 +65,7 @@
     <!-- Gallery Section -->
     <section id="gallery">
       <div class="container">
-        <h2>Gallery</h2>
-        <h3 class="gallery-subtitle">Teacher Showcase</h3>
+        <h2 class="gallery-subtitle">Teacher Showcase</h2>
         <div class="videos-grid">
           <div class="video-container">
             <img class="tribe-thumbnail" src="images/gallery1-thumbnail.png" alt="Thumbnail for Gallery Video 1" data-video-id="1s1lzprI4T3NtdVQ-eOG6idkfvMCYziHh" />
@@ -79,7 +78,7 @@
             <p class="video-caption">Judge Showcase at VTU Fest</p>
           </div>
         </div>
-        <h3 class="gallery-subtitle">Join the Tribe</h3>
+        <h2 class="gallery-subtitle">Join the Tribe</h2>
         <div class="videos-slider">
           <div class="tribe-videos-grid">
             <div class="circle-thumbnail-wrapper">
@@ -97,6 +96,13 @@
             <div class="circle-thumbnail-wrapper">
               <img class="tribe-thumbnail" src="images/shriniketh-thumbnail.png" alt="Thumbnail for Tribe Video 4" data-video-id="1doruQMhQdrhLtSM6WetfijN6DY9nLGaT" />
               <p class="video-caption">Shriniketh</p>
+            </div>
+          </div>
+          <!-- Video Popup -->
+          <div id="video-popup-overlay">
+            <div id="video-popup-content">
+              <iframe id="popup-video-player" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+              <button id="close-popup-btn" aria-label="Close video"><i class="fas fa-times"></i> Close</button>
             </div>
           </div>
         </div>
@@ -304,14 +310,6 @@
     </div>
   </footer>
 
-  <!-- Video Popup -->
-  <div id="video-popup-overlay">
-    <div id="video-popup-content">
-      <iframe id="popup-video-player" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-      <button id="close-popup-btn"><i class="fas fa-times"></i></button>
-    </div>
-  </div>
-
   <!-- Navigation Script -->
   <script>
     const navToggle = document.querySelector('.nav-toggle');
@@ -379,7 +377,7 @@
     });
   </script>
 
-  <!-- Slider Script for Testimonials -->
+  <!-- Slider Script for Testimonials and Video Popup -->
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       // Generic Slider Function (Used only for Testimonials)
@@ -419,7 +417,7 @@
           const offsetToCenter = (sliderWidth - itemWidth) / 2;
           const translateX = itemLeft - offsetToCenter;
 
-          grid.style.transform = `translateX(-${translateX}px)`;
+          grid.style.transform = 'translateX(-' + translateX + 'px)';
 
           items.forEach((item, index) => {
             item.classList.remove('active');
@@ -433,6 +431,8 @@
               grid.style.transition = 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)';
             }, 50);
           }
+
+          isTransitioning = false;
         }
 
         function handleNext() {
@@ -461,8 +461,6 @@
         currentIndex = 1;
 
         grid.addEventListener('transitionend', () => {
-          isTransitioning = false;
-
           if (items[currentIndex].id === 'last-clone') {
             currentIndex = items.length - 2;
             setSliderPosition(true);
@@ -493,30 +491,52 @@
 
       // Video Popup Logic
       const popupOverlay = document.getElementById('video-popup-overlay');
+      const popupVideoContent = document.getElementById('video-popup-content');
       const popupVideoPlayer = document.getElementById('popup-video-player');
       const closePopupBtn = document.getElementById('close-popup-btn');
       const tribeThumbnails = document.querySelectorAll('.tribe-thumbnail[data-video-id]');
+
+      function openPopup(videoId) {
+        if (!videoId) return;
+
+        const embedUrl = 'https://drive.google.com/file/d/' + videoId + '/preview';
+        popupOverlay.style.display = 'flex';
+        popupOverlay.style.pointerEvents = 'auto';
+        popupVideoContent.style.display = 'block';
+        popupVideoPlayer.src = ''; // Reset src to prevent loading old video
+        document.body.style.overflow = 'hidden';
+        closePopupBtn.style.display = 'block';
+
+        // Set iframe src after a short delay to ensure popup is visible
+        setTimeout(() => {
+          if (popupOverlay.style.display === 'flex') {
+            popupVideoPlayer.src = embedUrl;
+          }
+        }, 100); // Reduced delay for faster loading
+      }
+
+      function closePopup() {
+        popupVideoPlayer.src = '';
+        popupOverlay.style.display = 'none';
+        popupOverlay.style.pointerEvents = 'none';
+        popupVideoContent.style.display = 'none';
+        document.body.style.overflow = '';
+        closePopupBtn.style.display = 'none';
+      }
 
       tribeThumbnails.forEach(thumbnail => {
         thumbnail.addEventListener('click', (e) => {
           e.preventDefault();
           const videoId = thumbnail.dataset.videoId;
-          const embedUrl = `https://drive.google.com/file/d/${videoId}/preview`;
-          popupVideoPlayer.src = embedUrl;
-          popupOverlay.style.display = 'flex';
-          document.body.style.overflow = 'hidden';
+          openPopup(videoId);
         });
       });
 
-      closePopupBtn.addEventListener('click', () => {
-        popupVideoPlayer.src = "";
-        popupOverlay.style.display = 'none';
-        document.body.style.overflow = '';
-      });
+      closePopupBtn.addEventListener('click', closePopup);
 
       popupOverlay.addEventListener('click', (e) => {
         if (e.target === popupOverlay) {
-          closePopupBtn.click();
+          closePopup();
         }
       });
 
@@ -546,18 +566,14 @@
           const isExpanded = link.getAttribute('data-expanded') === 'true';
 
           if (isExpanded) {
-            if (previewText && fullText) {
-              previewText.style.display = 'block';
-              fullText.style.display = 'none';
-            }
+            previewText.style.display = 'block';
+            fullText.style.display = 'none';
             link.textContent = 'Read More';
             link.setAttribute('data-expanded', 'false');
             link.closest('.testimonial-card').classList.remove('expanded');
           } else {
-            if (previewText && fullText) {
-              previewText.style.display = 'none';
-              fullText.style.display = 'block';
-            }
+            previewText.style.display = 'none';
+            fullText.style.display = 'block';
             link.textContent = 'Read Less';
             link.setAttribute('data-expanded', 'true');
             link.closest('.testimonial-card').classList.add('expanded');
