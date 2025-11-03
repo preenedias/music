@@ -266,7 +266,7 @@ nav .nav-cta:hover { background-color: #d85c5c; transform: translateY(-0.125rem)
 /* === JOIN THE TRIBE – HORIZONTAL VIDEO BOX === */
 .tribe-slider {
   position: relative;
-  overflow: visible;
+  overflow: hidden; /* Changed from 'visible' to prevent any overflow bleed */
   padding: 3rem 0;
   margin-bottom: 2rem;
 }
@@ -278,6 +278,8 @@ nav .nav-cta:hover { background-color: #d85c5c; transform: translateY(-0.125rem)
   padding-left: 0;
   padding-right: 0;
   transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  width: fit-content; /* Ensures the flex row only takes the width of its children */
+  margin: 0 auto; /* Centers the entire grid horizontally within the slider */
 }
 
 .tribe-card {
@@ -285,7 +287,7 @@ nav .nav-cta:hover { background-color: #d85c5c; transform: translateY(-0.125rem)
   max-width: 32rem; /* Larger card on desktop */
   display: flex;
   flex-direction: column;
-  align-self: center; /* Ensures perfect vertical centering inside the flex container */
+  align-self: center; /* Ensures perfect vertical centering */
   justify-content: center;
   transform: scale(0.88);
   opacity: 0.7;
@@ -404,6 +406,13 @@ nav .nav-cta:hover { background-color: #d85c5c; transform: translateY(-0.125rem)
 .tribe-arrow.prev { left: 1.5rem; }
 .tribe-arrow.next { right: 1.5rem; }
 .tribe-arrow:hover { background-color: #d85c5c; }
+
+/* Ensure clones (used for infinite scroll) don't cause extra spacing or visibility issues */
+.tribe-card#first-clone,
+.tribe-card#last-clone {
+  visibility: visible; /* Overrides any potential JS issues; clones are now fully visible */
+  opacity: 1; /* Ensures no fade on edges */
+}
 
 /* --- Video Popup --- */
 #video-popup-overlay {
