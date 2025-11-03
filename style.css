@@ -274,18 +274,18 @@ nav .nav-cta:hover { background-color: #d85c5c; transform: translateY(-0.125rem)
 .tribe-grid {
   display: flex;
   align-items: center;
-  gap: 2.5rem;
-  padding-left: 5%;
-  padding-right: 5%;
+  gap: 1.5rem; /* Reduced gap for tighter centering on small screens */
+  padding-left: 0;
+  padding-right: 0;
   transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .tribe-card {
   flex: 0 0 70%;
-  max-width: 28rem;
+  max-width: 32rem; /* Larger card on desktop */
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-self: center; /* Ensures perfect vertical centering inside the flex container */
   justify-content: center;
   transform: scale(0.88);
   opacity: 0.7;
@@ -306,7 +306,7 @@ nav .nav-cta:hover { background-color: #d85c5c; transform: translateY(-0.125rem)
 .tribe-card .video-wrapper {
   position: relative;
   width: 100%;
-  max-width: 32rem;
+  max-width: 100%; /* Fill the card width */
   padding-bottom: 56.25%;
   height: 0;
   border-radius: 0.75rem;
@@ -764,8 +764,10 @@ footer {
 /* --- RESPONSIVE --- */
 @media (max-width: 992px) {
   .videos-grid { grid-template-columns: 1fr; }
-  .tribe-card { flex: 0 0 75%; max-width: 24rem; }
-  .tribe-card .video-wrapper { max-width: 28rem; }
+  .tribe-card {
+    flex: 0 0 80%; /* Slightly wider base for mobile */
+    max-width: 36rem; /* Larger card on tablets */
+  }
 }
 
 @media (max-width: 768px) {
@@ -787,15 +789,17 @@ footer {
   nav ul { flex-direction: column; gap: 1.5rem; padding: 2rem 0; }
   
   /* FIXED: Contact section mobile padding */
-  .contact-details { 
+  .contact-details {
     flex-direction: column; 
     gap: 1.25rem; 
     padding: 0 1rem; /* Added left/right padding */
     max-width: 100%; /* Ensure full width usage */
   }
 
-  .tribe-card { flex: 0 0 80%; max-width: 20rem; }
-  .tribe-card .video-wrapper { max-width: 24rem; }
+  .tribe-card {
+    flex: 0 0 88%; /* Almost full-width on phones for bigger video */
+    max-width: 40rem; /* Allow it to grow larger */
+  }
   .tribe-card .video-caption { font-size: 1rem; padding: 0.35rem 0.8rem; }
   .tribe-arrow { width: 3rem; height: 3rem; font-size: 1.3rem; }
   .tribe-arrow.prev { left: 0.75rem; } .tribe-arrow.next { right: 0.75rem; }
@@ -837,13 +841,15 @@ footer {
   .features-grid { grid-template-columns: 1fr; }
 
   /* FIXED: Extra padding for very small screens */
-  .contact-details { 
+  .contact-details {
     gap: 1rem; 
     padding: 0 1.5rem; /* Increased padding for tiny screens */
   }
 
-  .tribe-card { flex: 0 0 90%; max-width: 18rem; padding: 1rem; }
-  .tribe-card .video-wrapper { max-width: 20rem; }
+  .tribe-card {
+    flex: 0 0 94%; /* Nearly full-width for maximum size */
+    max-width: 44rem;
+  }
   .tribe-card .video-caption { font-size: 0.95rem; padding: 0.3rem 0.7rem; }
   .tribe-arrow { width: 2.5rem; height: 2.5rem; font-size: 1.1rem; }
 
