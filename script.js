@@ -195,7 +195,18 @@ function initializeSlider(
 
   window.addEventListener("resize", () => updatePosition(true));
 
-  setTimeout(() => updatePosition(true), 200);
+  // After initial positioning, reveal the grid to avoid transient overflow.
+  // Keep the grid in the layout (so measurement works) but hidden via CSS
+  // (`opacity: 0`) until we calculate positions — then fade it in.
+  setTimeout(() => {
+    updatePosition(true);
+    if (grid && grid.style) {
+      grid.style.transition =
+        (grid.style.transition || "") + ", opacity 0.35s ease";
+      grid.style.opacity = "1";
+      grid.style.pointerEvents = "auto";
+    }
+  }, 200);
 }
 
 // Initialize Sliders
