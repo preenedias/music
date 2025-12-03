@@ -1,4 +1,11 @@
 /* --- General Styling --- */
+html {
+  /* Use auto so the browser only shows a vertical scrollbar when needed.
+     `overflow-y: scroll` forces a persistent scrollbar in some browsers
+     which can cause visual jumpiness when layout repaints. */
+  overflow-y: auto;
+}
+
 body {
   background-color: #1a1a1a;
   color: #f5f5f5;
@@ -162,7 +169,7 @@ nav .nav-cta:hover {
 }
 #hero-title {
   font-family: "Great Vibes", cursive;
-  font-size: 4 remix;
+  font-size: 4rem;
   color: #ffdab9;
   text-shadow: 0.05em 0.05em 0.15em rgba(0, 0, 0, 0.6);
 }
@@ -275,6 +282,7 @@ nav .nav-cta:hover {
   background-attachment: fixed;
   background-color: #1a1a1a;
   padding: 5rem 0;
+  overflow-x: hidden;
 }
 
 .gallery-subtitle {
@@ -345,8 +353,15 @@ nav .nav-cta:hover {
 .tribe-slider {
   position: relative;
   overflow: hidden;
+  overflow-x: hidden;
   padding: 3rem 0;
   margin-bottom: 2rem;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.tribe-slider::-webkit-scrollbar {
+  display: none;
 }
 
 .tribe-grid {
@@ -355,6 +370,11 @@ nav .nav-cta:hover {
   gap: 1.5rem;
   padding: 0;
   transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  /* Hide visually until JS positions the slider to avoid transient overflow
+      causing a scrollbar on initial render. Keep it in layout so JS can
+      measure sizes; JS will set opacity to 1 when ready. */
+  opacity: 0;
+  pointer-events: none;
 }
 
 .tribe-card {
@@ -544,6 +564,14 @@ nav .nav-cta:hover {
 #class-features {
   background: linear-gradient(rgba(26, 26, 26, 0.9), rgba(26, 26, 26, 0.9)),
     url("images/background.jpg") center/cover fixed #1a1a1a;
+}
+
+/* Quick trial: ensure vertical overflow inside feature area doesn't create
+   an inner scrollbar. This lets content grow without clipping. */
+#class-features,
+.features-grid,
+.container {
+  overflow-y: visible !important;
 }
 .features-grid {
   display: grid;
@@ -1020,7 +1048,8 @@ footer {
   #about,
   #gallery,
   #class-features,
-  #testimonials {
+  #testimonials,
+  #retention {
     background-attachment: scroll;
   }
   .nav-toggle {
