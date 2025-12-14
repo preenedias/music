@@ -997,6 +997,7 @@ footer {
 @media (max-width: 768px) {
   * {
     -webkit-overflow-scrolling: touch;
+    box-sizing: border-box;
   }
 
   .testimonial-slider,
@@ -1066,10 +1067,12 @@ footer {
     left: 0;
     right: 0;
     width: 100%;
+    display: none;
     transform: scaleY(0);
     transition: transform 0.3s ease-in-out;
   }
   nav.nav--visible {
+    display: flex;
     transform: scaleY(1);
   }
   nav ul {
@@ -1303,7 +1306,7 @@ p {
     ),
     linear-gradient(135deg, rgba(229, 115, 115, 0.12), rgba(26, 26, 26, 0.9)),
     url("images/music.jpg") center/cover no-repeat;
-  overflow: hidden;
+  overflow: visible;
 }
 
 /* Soft spotlight glow */
