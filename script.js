@@ -103,11 +103,12 @@ function initializeSlider(
     else grid.style.transition = "transform 0.6s ease";
 
     const selected = items[currentIndex];
-    const sliderWidth = slider.offsetWidth;
-    const itemWidth = selected.offsetWidth;
     const itemLeft = selected.offsetLeft;
+    const gridPaddingLeft = parseFloat(window.getComputedStyle(grid).paddingLeft); // Get computed padding-left
 
-    const offset = itemLeft - (sliderWidth - itemWidth) / 2;
+    // Calculate offset to bring the selected item to the start of the visible area,
+    // accounting for the grid's left padding.
+    const offset = itemLeft - gridPaddingLeft;
 
     grid.style.transform = `translateX(-${offset}px)`;
 
@@ -163,35 +164,35 @@ function initializeSlider(
   let endX = 0;
   let endY = 0;
 
-  slider.addEventListener("touchstart", (e) => {
-    startX = e.touches[0].clientX;
-    startY = e.touches[0].clientY;
-  });
+  // slider.addEventListener("touchstart", (e) => {
+  //   startX = e.touches[0].clientX;
+  //   startY = e.touches[0].clientY;
+  // });
 
-  slider.addEventListener("touchmove", (e) => {
-    endX = e.touches[0].clientX;
-    endY = e.touches[0].clientY;
-  });
+  // slider.addEventListener("touchmove", (e) => {
+  //   endX = e.touches[0].clientX;
+  //   endY = e.touches[0].clientY;
+  // });
 
-  slider.addEventListener("touchend", () => {
-    const diffX = startX - endX;
-    const diffY = startY - endY;
-    const threshold = 50; // Minimum swipe distance
+  // slider.addEventListener("touchend", () => {
+  //   const diffX = startX - endX;
+  //   const diffY = startY - endY;
+  //   const threshold = 50; // Minimum swipe distance
 
-    if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > threshold) {
-      if (diffX > 0) {
-        // Swipe left - next
-        if (isTransitioning) return;
-        currentIndex++;
-        updatePosition();
-      } else {
-        // Swipe right - prev
-        if (isTransitioning) return;
-        currentIndex--;
-        updatePosition();
-      }
-    }
-  });
+  //   if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > threshold) {
+  //     if (diffX > 0) {
+  //       // Swipe left - next
+  //       if (isTransitioning) return;
+  //       currentIndex++;
+  //       updatePosition();
+  //     } else {
+  //       // Swipe right - prev
+  //       if (isTransitioning) return;
+  //       currentIndex--;
+  //       updatePosition();
+  //     }
+  //   }
+  // });
 
   window.addEventListener("resize", () => updatePosition(true));
 
@@ -307,7 +308,7 @@ const observer = new IntersectionObserver(
 document
   .querySelectorAll("section, .feature-card, .testimonial-card")
   .forEach((el) => {
-    // el.classList.add("fade-up"); // Commenting this out for testing
+    el.classList.add("fade-up"); // Re-enabling fade-up class
     observer.observe(el);
   });
 
