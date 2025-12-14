@@ -307,7 +307,7 @@ const observer = new IntersectionObserver(
 document
   .querySelectorAll("section, .feature-card, .testimonial-card")
   .forEach((el) => {
-    el.classList.add("fade-up");
+    // el.classList.add("fade-up"); // Commenting this out for testing
     observer.observe(el);
   });
 
