@@ -15,7 +15,13 @@ body {
   font-size: 1rem;
   font-weight: 300;
   scroll-behavior: smooth;
-  overflow-x: hidden;
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
 .container {
@@ -23,7 +29,6 @@ body {
   max-width: 75rem;
   margin: 0 auto;
   padding: 1.25rem 0;
-  overflow-x: hidden;
 }
 
 h1,
@@ -282,7 +287,6 @@ nav .nav-cta:hover {
   background-attachment: fixed;
   background-color: #1a1a1a;
   padding: 5rem 0;
-  overflow-x: hidden;
 }
 
 .gallery-subtitle {
