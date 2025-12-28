@@ -1458,6 +1458,11 @@ p {
   font-weight: 300;
   margin-bottom: 2rem;
 }
+.vision-paragraph b,
+.vision-paragraph strong {
+  font-weight: 700;
+  color: #ffdab9;
+}
 
 /* Button alignment */
 .vision-cta-inline {
@@ -1568,3 +1573,4 @@ p {
   color: #f5f5f5;
   line-height: 1.6;
 }
+
