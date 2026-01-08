@@ -11,7 +11,7 @@ body {
   color: #f5f5f5;
   font-family: "Inter", "Verdana", "Arial", sans-serif;
   margin: 0;
-  line-height: 1.7;
+  line-height: 1.8; /* Standardized for consistency */
   font-size: 1rem;
   font-weight: 300;
   scroll-behavior: smooth;
@@ -58,6 +58,7 @@ a {
   text-decoration: none;
   transition: color 0.3s ease;
 }
+
 a:hover {
   color: #ffdab9;
 }
@@ -184,6 +185,7 @@ nav .nav-cta:hover {
   color: #ffdab9;
   text-shadow: 0.03em 0.03em 0.1em rgba(0, 0, 0, 0.6);
   margin-top: 0.625rem;
+  font-weight: 700; /* Standardized */
 }
 .typing-cursor {
   border-right: 0.12em solid #e57373;
@@ -201,14 +203,30 @@ nav .nav-cta:hover {
 
 /* --- About --- */
 #about {
-  background-color: #000;
+  background: linear-gradient(180deg, #1a1a1a 0%, #2a2a2a 50%, #1a1a1a 100%),
+              url("https://www.transparenttextures.com/patterns/dark-fish-skin.png");
   padding: 6.25rem 0;
   text-align: center;
+  position: relative; /* Needed for pseudo-elements */
+  overflow: hidden; /* Ensures background doesn't bleed */
 }
+
+#about::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, rgba(255, 218, 185, 0.05) 0%, transparent 70%);
+  opacity: 0.7;
+  pointer-events: none;
+}
+
 .about-summary {
   max-width: 50rem;
   margin: 0 auto 2.5rem;
-  line-height: 1.8;
+  line-height: 1.8; /* Standardized */
   color: #f5f5f5;
 }
 .highlight {
@@ -222,20 +240,21 @@ nav .nav-cta:hover {
   align-items: center;
   justify-content: center;
   gap: 0.75rem;
-  background: linear-gradient(135deg, #ffdab9, #f78b8b);
-  color: #000000;
+  background: linear-gradient(135deg, #ffdab9, #e57373); /* Updated gradient */
+  color: #000000; /* Darker text for contrast */
   font-family: "Playfair Display", serif;
   font-weight: 700;
-  font-size: 1.3rem;
-  padding: 1rem 2.5rem;
-  border-radius: 5px;
+  font-size: 1.4rem; /* Slightly larger font size */
+  padding: 1.1rem 2.8rem; /* Increased padding */
+  border-radius: 8px; /* Softer border-radius */
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  box-shadow: 0 0.5rem 1.5rem rgba(229, 115, 115, 0.4);
-  transition: all 0.4s ease;
+  letter-spacing: 0.06em; /* Slightly more letter spacing */
+  box-shadow: 0 0.8rem 1.8rem rgba(229, 115, 115, 0.5); /* Deeper shadow */
+  transition: all 0.5s ease; /* Smoother transition */
   position: relative;
   overflow: hidden;
   cursor: pointer;
+  border: none; /* Removed default border */
 }
 
 .about-cta-button::before {
@@ -259,9 +278,9 @@ nav .nav-cta:hover {
 }
 
 .about-cta-button:hover {
-  background: linear-gradient(135deg, #f78b8b, #ffdab9);
-  transform: translateY(-0.3125rem) scale(1.05);
-  box-shadow: 0 0.75rem 2rem rgba(229, 115, 115, 0.6);
+  background: linear-gradient(135deg, #e57373, #ffdab9); /* Reversed gradient on hover */
+  transform: translateY(-0.4rem) scale(1.07); /* More pronounced lift and zoom */
+  box-shadow: 0 1rem 2.5rem rgba(229, 115, 115, 0.8); /* Even deeper shadow on hover */
   color: #000;
 }
 
@@ -271,12 +290,13 @@ nav .nav-cta:hover {
 }
 
 .about-cta-icon {
-  font-size: 1.2rem;
+  font-size: 1.3rem; /* Slightly larger icon */
   transition: transform 0.4s ease;
+  margin-left: 0.8rem; /* Adjusted margin */
 }
 
 .about-cta-button:hover .about-cta-icon {
-  transform: translateX(0.5rem);
+  transform: translateX(0.6rem); /* More pronounced icon movement */
 }
 
 /* --- Gallery Section --- */
@@ -349,7 +369,7 @@ nav .nav-cta:hover {
   background: rgba(0, 0, 0, 0.6);
   padding: 5px 10px;
   margin: 0;
-  font-size: 14px;
+  font-size: 0.875rem; /* Standardized from 14px */
   z-index: 10;
 }
 
@@ -569,6 +589,9 @@ nav .nav-cta:hover {
   background: linear-gradient(rgba(26, 26, 26, 0.9), rgba(26, 26, 26, 0.9)),
     url("images/background.jpg") center/cover fixed #1a1a1a;
 }
+#class-features h2 {
+  margin-bottom: 3.75rem;
+}
 
 /* Quick trial: ensure vertical overflow inside feature area doesn't create
    an inner scrollbar. This lets content grow without clipping. */
@@ -622,7 +645,6 @@ nav .nav-cta:hover {
 #testimonials {
   background: linear-gradient(rgba(26, 26, 26, 0.85), rgba(26, 26, 26, 0.85)),
     url("images/music.jpg") center/cover fixed #1a1a1a;
-  overflow: visible;
 }
 #testimonials h2 {
   margin-bottom: 3.75rem;
@@ -749,7 +771,9 @@ nav .nav-cta:hover {
   display: flex;
   justify-content: center;
   align-items: center;
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.3);
 }
+
 .testimonial-arrow.prev {
   left: 1.5rem;
 }
@@ -762,12 +786,13 @@ nav .nav-cta:hover {
 
 /* --- Contact --- */
 #contact {
-  background-color: #ffdab9;
+  background-color: #1a1a1a; /* Darker background for contact section */
   text-align: center;
   padding: 3.75rem 0;
+  color: #f5f5f5; /* Lighter text for contact section */
 }
 #contact h2 {
-  color: #443a30;
+  color: #ffdab9; /* Lighter heading */
   margin-bottom: 0.9375rem;
 }
 .contact-details {
@@ -789,7 +814,7 @@ nav .nav-cta:hover {
 .contact-item a,
 .contact-item span {
   font-size: 1.1rem;
-  color: #443a30;
+  color: #f5f5f5; /* Lighter text for contact details */
   transition: color 0.3s ease;
 }
 .contact-item a:hover {
@@ -885,8 +910,9 @@ nav .nav-cta:hover {
 
 .polaroid img {
   width: 100%;
-  height: auto;
-  display: block;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0.25rem;
 }
 
 .polaroid:nth-child(even) {
@@ -923,7 +949,7 @@ nav .nav-cta:hover {
   font-size: 1.2rem;
   max-width: 50rem;
   margin: 0 auto;
-  line-height: 1.8;
+  line-height: 1.8; /* Standardized */
 }
 
 #about-details {
@@ -934,54 +960,99 @@ nav .nav-cta:hover {
 .about-section-content {
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: 4rem; /* Increased gap for better separation */
   margin-top: 3rem;
 }
 
 .about-content-item {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 3rem; /* Increased gap between image and text */
   max-width: 75rem;
-  margin: 0 auto;
+  margin: 0 auto 3rem; /* Added bottom margin for spacing between items */
+  background-color: rgba(37, 37, 37, 0.8);
+  border-radius: 12px;
+  padding: 2.5rem; /* Added padding to the container */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Modernized shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+}
+
+.about-content-item:hover {
+  transform: translateY(-8px); /* Lift effect on hover */
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7); /* Enhanced shadow on hover */
+}
+
+.about-content-item:nth-child(even) {
+  flex-direction: row-reverse; /* Alternate layout for even items */
 }
 
 .about-image-container {
   flex: 0 0 40%;
   position: relative;
   padding: 1.5rem;
-  background-color: #fff;
-  border: 0.5rem solid #f5f5f5;
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
-  transform: rotate(3deg);
-  transition: transform 0.3s ease;
+  background-color: #2a2a2a; /* Darker background */
+  border: 0.5rem solid #e57373; /* Complementary border color */
+  box-shadow: 0 0.8rem 1.5rem rgba(0, 0, 0, 0.4); /* Deeper shadow */
+  transform: rotate(-2deg); /* Slightly less rotation */
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  border-radius: 8px; /* Added border radius to image container */
 }
 
 .about-image-container:hover {
-  transform: rotate(0deg);
+  transform: rotate(0deg) scale(1.02); /* Subtle zoom and straighten on hover */
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.6); /* Even deeper shadow on hover */
 }
 
 .about-image-container img {
   width: 100%;
-  height: auto;
-  display: block;
+  height: 100%;
+  object-fit: cover;
   border-radius: 0.25rem;
 }
 
 .about-text {
   flex: 1;
-  padding: 1rem;
+  padding: 0 1.5rem; /* Adjusted padding */
+  text-align: left; /* Ensure text is left-aligned within its box */
 }
 
 .about-text h3 {
   color: #ffdab9;
-  font-size: 1.8rem;
+  font-size: 1.8rem; /* Standardized from 2rem */
   margin-bottom: 1rem;
 }
 
 .about-text p {
-  font-size: 1rem;
-  line-height: 1.8;
+  font-size: 1rem; /* Standardized from 1.05rem */
+  line-height: 1.8; /* Standardized */
+  color: #e0e0e0; /* Slightly lighter text for readability */
+}
+
+/* Additional styling for the main text box on the right */
+#about-details .container > div:first-child {
+  background: linear-gradient(145deg, rgba(37, 37, 37, 0.9), rgba(26, 26, 26, 0.95));
+  border-radius: 15px;
+  padding: 3rem;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 218, 185, 0.1);
+  transform: translateY(0);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#about-details .container > div:first-child:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+}
+
+#about-details .container > div:first-child p {
+  font-size: 1.1rem;
+  line-height: 1.8; /* Standardized */
+  color: #f5f5f5;
+}
+
+#about-details .container > div:first-child .highlight {
+  color: #ffdab9;
+  font-weight: bold;
 }
 
 /* --- Footer --- */
@@ -1023,9 +1094,47 @@ footer {
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
   }
+
+  .about-content-item {
+    flex-direction: column; /* Stack image and text vertically on mobile */
+    text-align: center;
+    padding: 2rem 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .about-content-item:nth-child(even) {
+    flex-direction: column; /* Ensure vertical stacking for all items on mobile */
+  }
+
+  .about-image-container {
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: 300px; /* Adjust max-width for mobile images */
+    margin-bottom: 1.5rem; /* Space between image and text */
+    transform: rotate(0deg); /* Remove rotation on mobile */
+    border: 0.4rem solid #e57373;
+    box-shadow: 0 0.6rem 1.2rem rgba(0, 0, 0, 0.3);
+  }
+
+  .about-image-container:hover {
+    transform: scale(1.02); /* Subtle zoom on hover for mobile */
+    box-shadow: 0 0.8rem 1.6rem rgba(0, 0, 0, 0.5);
+  }
+
+  .about-text {
+    padding: 0;
+    text-align: center; /* Center text on mobile */
+  }
+
+  .about-text h3 {
+    font-size: 1.6rem;
+  }
+
+  .about-text p {
+    font-size: 1rem;
+  }
 }
 
-/* --- RESPONSIVE --- */
 @media (max-width: 992px) {
   .videos-grid {
     grid-template-columns: 1fr;
@@ -1282,7 +1391,7 @@ footer {
 p {
   font-family: "Inter", sans-serif;
   font-size: 1rem;
-  line-height: 1.8;
+  line-height: 1.8; /* Standardized */
   color: #f5f5f5;
 }
 
@@ -1353,7 +1462,7 @@ p {
   font-size: 4rem;
   font-family: "Playfair Display", serif;
   font-weight: 700;
-  color: #ece4e4; /* Elegant muted coral tone */
+  color: #000000; /* Darker and more visible */
   letter-spacing: 0.02em;
   animation: riseUp 1.5s ease-out forwards;
   opacity: 0;
@@ -1374,7 +1483,7 @@ p {
 .retention-text {
   font-size: 1.3rem;
   margin-top: 0.8rem;
-  color: #f5f5f5;
+  color: #000000; /* Darker and more visible */
   opacity: 0;
   animation: fadeIn 2.2s ease-out forwards;
 }
@@ -1413,6 +1522,10 @@ p {
   box-shadow: 0 0 35px rgba(0, 0, 0, 0.45);
   animation: fadeVisionIn 1.2s ease forwards;
   opacity: 0;
+  border: 4px solid #e57373; /* Refined border */
+  box-shadow: 0 0 45px rgba(0, 0, 0, 0.6), 0 0 20px rgba(229, 115, 115, 0.25); /* Enhanced shadow */
+  transform: scale(1.02) rotate(-3deg); /* Slightly more rotation and scale */
+  transition: transform 0.4s ease, box-shadow 0.4s ease; /* Smoother transition */
 }
 
 @keyframes fadeVisionIn {
@@ -1429,14 +1542,15 @@ p {
 /* Text Box Right */
 .vision-text-box {
   flex: 1.4;
-  background: rgba(255, 255, 255, 0.06);
-  padding: 2rem 2.5rem;
-  border-radius: 12px;
-  border-left: 4px solid #ffdab9;
-  border-right: 4px solid #e57373;
-  backdrop-filter: blur(8px);
+  background: radial-gradient(circle at top left, rgba(255, 218, 185, 0.08), rgba(26, 26, 26, 0.8)); /* Radial gradient */
+  padding: 2.5rem 3rem; /* Adjusted padding */
+  border-radius: 15px; /* Softer border-radius */
+  border: 1px solid rgba(255, 218, 185, 0.15); /* Subtle border */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 218, 185, 0.1); /* Enhanced shadow */
+  backdrop-filter: blur(10px); /* Slightly more blur */
   animation: slideFadeUp 1.2s ease forwards;
   opacity: 0;
+  color: #e0e0e0; /* Adjusted text color for readability */
 }
 
 @keyframes slideFadeUp {
@@ -1451,10 +1565,17 @@ p {
 }
 
 /* Normal paragraph text */
-.vision-paragraph {
-  font-size: 1.15rem;
+p {
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  line-height: 1.8; /* Standardized */
   color: #f5f5f5;
-  line-height: 1.85;
+}
+
+.vision-paragraph {
+  font-size: 1.1rem; /* Standardized from 1.15rem */
+  color: #e0e0e0; /* Adjusted for consistency */
+  line-height: 1.8; /* Standardized */
   font-weight: 300;
   margin-bottom: 2rem;
 }
@@ -1522,7 +1643,7 @@ p {
 /* --- NEWS / NOTICE BOARD SECTION --- */
 
 #notice-board {
-  background: rgba(26, 26, 26, 0.7);
+  background: #ffdab9; /* Background color changed to match heading */
   backdrop-filter: blur(4px);
   padding: 3.5rem 0;
   margin-top: 3rem;
@@ -1531,6 +1652,7 @@ p {
 }
 
 .notice-title {
+  display: none; /* Heading removed */
   text-align: center;
   font-size: 2.2rem;
   color: #ffdab9;
@@ -1552,7 +1674,7 @@ p {
 .notice-item {
   display: flex;
   align-items: flex-start;
-  background: rgba(255, 255, 255, 0.05);
+  background: #1a1a1a; /* Changed to website background color */
   padding: 1rem 1.5rem;
   border-radius: 8px;
   border-left: 4px solid #e57373;
@@ -1561,7 +1683,7 @@ p {
 
 .notice-item:hover {
   transform: translateX(6px);
-  background: rgba(255, 255, 255, 0.08);
+  background: #333; /* Slightly lighter for hover effect */
 }
 
 .notice-bullet {
@@ -1570,7 +1692,6 @@ p {
 
 .notice-item p {
   font-size: 1.1rem;
-  color: #f5f5f5;
+  color: #f5f5f5; /* Adjusted for visibility on dark background */
   line-height: 1.6;
 }
-
