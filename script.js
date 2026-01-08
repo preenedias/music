@@ -84,9 +84,6 @@ function initializeSlider(
     return;
   }
 
-  let currentIndex = 1;
-  let isTransitioning = false;
-
   // Clone first & last for infinite loop
   const firstClone = items[0].cloneNode(true);
   const lastClone = items[items.length - 1].cloneNode(true);
@@ -98,17 +95,22 @@ function initializeSlider(
 
   items = Array.from(grid.querySelectorAll(itemSelector));
 
+  let currentIndex = Math.floor((items.length - 2) / 2) + 1;
+  let isTransitioning = false;
+
   function updatePosition(instant = false) {
     if (instant) grid.style.transition = "none";
     else grid.style.transition = "transform 0.6s ease";
 
     const selected = items[currentIndex];
     const itemLeft = selected.offsetLeft;
-    const gridPaddingLeft = parseFloat(window.getComputedStyle(grid).paddingLeft); // Get computed padding-left
+    const itemWidth = selected.offsetWidth; // Get the width of the selected item
+    const sliderWidth = slider.offsetWidth; // Get the width of the visible slider area
 
-    // Calculate offset to bring the selected item to the start of the visible area,
-    // accounting for the grid's left padding.
-    const offset = itemLeft - gridPaddingLeft;
+    // Calculate offset to center the selected item within the slider's visible area.
+    // We need to subtract the slider's half-width and add the item's half-width
+    // to its left position relative to the grid.
+    const offset = itemLeft - (sliderWidth / 2) + (itemWidth / 2);
 
     grid.style.transform = `translateX(-${offset}px)`;
 
@@ -171,6 +173,7 @@ function initializeSlider(
 
   // slider.addEventListener("touchmove", (e) => {
   //   endX = e.touches[0].clientX;
+  
   //   endY = e.touches[0].clientY;
   // });
 
