@@ -34,7 +34,7 @@ body {
 h1,
 h2,
 h3 {
-  font-family: "Playfair Display", serif;
+  font-family: "Inter", "Verdana", "Arial", sans-serif;
   font-weight: 700;
   color: #ffdab9;
   margin-bottom: 1.25rem;
@@ -1165,6 +1165,7 @@ footer {
   #testimonials,
   #retention {
     background-attachment: scroll;
+    color: #fff;
   }
   .nav-toggle {
     display: block;
@@ -1695,3 +1696,4 @@ p {
   color: #f5f5f5; /* Adjusted for visibility on dark background */
   line-height: 1.6;
 }
+
