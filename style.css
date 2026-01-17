@@ -1461,9 +1461,9 @@ p {
 /* Number styling */
 .retention-number {
   font-size: 4rem;
-  font-family: "Playfair Display", serif;
+  /* font-family: "Playfair Display", serif; */
   font-weight: 700;
-  color: #000000; /* Darker and more visible */
+  /* color: #000000; /* Darker and more visible */ 
   letter-spacing: 0.02em;
   animation: riseUp 1.5s ease-out forwards;
   opacity: 0;
@@ -1696,4 +1696,5 @@ p {
   color: #f5f5f5; /* Adjusted for visibility on dark background */
   line-height: 1.6;
 }
+
 
